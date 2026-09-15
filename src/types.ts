@@ -66,3 +66,10 @@ export interface ServicePageData {
   intro: string;
   sections: ServicePageSection[];
 }
+
+export interface ReactionVideoData {
+  eyebrow: string;
+  title: string;
+  youtubeId: string;
+  caption: string;
+}

@@ -188,6 +188,29 @@ collections:
               required: false,
             }
 
+  - name: "reaction-video"
+    label: "Homepage Reaction Video"
+    files:
+      - label: "Reaction Video"
+        name: "reaction-video"
+        file: "src/data/reaction-video.json"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - {
+              label: "YouTube Video ID",
+              name: "youtubeId",
+              widget: "string",
+              hint: "The part after youtube.com/shorts/ or youtu.be/ — e.g. for youtube.com/shorts/C0l-sT04gAo the ID is C0l-sT04gAo. Leave blank to hide this section.",
+              required: false,
+            }
+          - {
+              label: "Caption",
+              name: "caption",
+              widget: "string",
+              required: false,
+            }
+
   - name: "spot-on-caricature"
     label: "Spot-On Caricature Page"
     files:
