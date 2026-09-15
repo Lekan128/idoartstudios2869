@@ -1,0 +1,26 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+[[headers]]
+  for = "/images/uploads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# SEO NOTE: before cutting DNS over from the WordPress site, add explicit
+# 301 rules ABOVE the SPA catch-all below for every indexed WordPress URL,
+# e.g.:
+#   /caricature-studio-lagos-nigeria/   /   301
+#   /about-i-do-art-studios/            /   301
+# Pull the authoritative list from Google Search Console (Pages report) or
+# a WordPress "All Export" of page/post slugs — don't guess from the live
+# nav, some indexed URLs are older than the current menu.
+
+# SPA fallback — must stay last.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

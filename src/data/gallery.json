@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "image": "/images/uploads/gallery/gallery-1.png", "alt": "Group caricature drawing of three people, from an I Do Art Studios event" },
+    { "image": "/images/uploads/gallery/gallery-2.png", "alt": "Bold two-person caricature drawing, I Do Art Studios" },
+    { "image": "/images/uploads/gallery/gallery-3.png", "alt": "Individual full-body caricature drawing" },
+    { "image": "/images/uploads/gallery/gallery-4.jpg", "alt": "Guest holding a printed caricature at a live event" },
+    { "image": "/images/uploads/gallery/gallery-5.jpg", "alt": "I Do Art Studios live drawing setup at various events" }
+  ]
+}

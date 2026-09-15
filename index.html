@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO tags. This is a client-rendered SPA with one real route today (the
+         homepage), so these tags live in the static HTML shell rather than being injected
+         by JS — that's what search engines and social crawlers actually read on first
+         fetch. When the blog ships, per-post meta tags MUST be served from a function/edge
+         function (real HTML per URL), not only set client-side after hydration. -->
+    <title>I Do Art Studios | Live Caricature Artist for Events in Lagos, Nigeria</title>
+    <meta
+      name="description"
+      content="I Do Art Studios (Mr. Caricature) brings live caricature entertainment to weddings, parties and corporate events across Lagos, Nigeria. Caricature in minutes — book your event today."
+    />
+    <link rel="canonical" href="https://idoartstudios.com.ng/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#DB2777" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="I Do Art Studios" />
+    <meta property="og:title" content="I Do Art Studios | Live Caricature Artist for Events in Lagos, Nigeria" />
+    <meta
+      property="og:description"
+      content="Caricature in minutes — live caricature entertainment for weddings, parties and corporate events across Lagos, Nigeria."
+    />
+    <meta property="og:url" content="https://idoartstudios.com.ng/" />
+    <meta property="og:image" content="https://idoartstudios.com.ng/images/uploads/logo/idoartstudios-logo.png" />
+    <meta property="og:locale" content="en_NG" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="I Do Art Studios | Live Caricature Artist for Events in Lagos, Nigeria" />
+    <meta
+      name="twitter:description"
+      content="Caricature in minutes — live caricature entertainment for weddings, parties and corporate events across Lagos, Nigeria."
+    />
+    <meta name="twitter:image" content="https://idoartstudios.com.ng/images/uploads/logo/idoartstudios-logo.png" />
+
+    <link rel="icon" type="image/png" href="/images/uploads/logo/idoartstudios-logo.png" />
+
+    <!-- Structured data: helps Google understand this is a real local business (rich
+         results, Knowledge Panel eligibility). Keep in sync with src/data/site.json. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EntertainmentBusiness",
+        "name": "I Do Art Studios",
+        "alternateName": "Mr. Caricature",
+        "url": "https://idoartstudios.com.ng/",
+        "logo": "https://idoartstudios.com.ng/images/uploads/logo/idoartstudios-logo.png",
+        "image": "https://idoartstudios.com.ng/images/uploads/logo/idoartstudios-logo.png",
+        "description": "Live caricature entertainment and hand-drawn portraits for weddings, parties and corporate events across Lagos, Nigeria.",
+        "areaServed": {
+          "@type": "City",
+          "name": "Lagos"
+        },
+        "telephone": "+2349130534038",
+        "sameAs": []
+      }
+    </script>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

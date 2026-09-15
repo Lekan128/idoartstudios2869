@@ -1,0 +1,256 @@
+# public/admin/config.yml
+#
+# Non-negotiable: backend.name is git-gateway, backend.branch is main.
+# media_folder / public_folder point at public/images/uploads.
+#
+# NOTE on the future blog: posts will be stored in MongoDB and served via
+# Netlify Functions, not through this CMS/git-gateway — so there is
+# intentionally no "Blog" collection here yet. When that ships, blog content
+# editing happens through its own admin UI backed by the Functions API, not
+# Decap.
+
+backend:
+  name: git-gateway
+  branch: main
+
+# local_backend:
+#   url: http://localhost:8082/api/v1
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General"
+        name: "site"
+        file: "src/data/site.json"
+        fields:
+          - { label: "Business Name", name: "brandName", widget: "string" }
+          - {
+              label: "Tagline (under logo)",
+              name: "tagline",
+              widget: "string",
+              required: false,
+            }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - label: "Navigation Links"
+            name: "nav"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - {
+                  label: "Link (section id like #gallery, or a full URL)",
+                  name: "href",
+                  widget: "string",
+                }
+          - {
+              label: "Book an Event — Button Text",
+              name: "bookEventLabel",
+              widget: "string",
+            }
+          - {
+              label: "Book an Event — Link",
+              name: "bookEventUrl",
+              widget: "string",
+              hint: "Currently the Google Form. Update this when the owner's new booking flow is ready.",
+            }
+          - {
+              label: "WhatsApp Number (with country code, e.g. +234...)",
+              name: "whatsappNumber",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Contact Email",
+              name: "contactEmail",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Instagram URL",
+              name: "instagramUrl",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Facebook URL",
+              name: "facebookUrl",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Footer Tagline",
+              name: "footerTagline",
+              widget: "string",
+              required: false,
+            }
+
+  - name: "home"
+    label: "Homepage"
+    files:
+      - label: "Hero & Section Headings"
+        name: "home"
+        file: "src/data/home.json"
+        fields:
+          - {
+              label: "Eyebrow (small text above headline)",
+              name: "eyebrow",
+              widget: "string",
+            }
+          - {
+              label: "Headline — Plain part",
+              name: "headlinePlain",
+              widget: "string",
+              hint: 'e.g. "Mr."',
+            }
+          - {
+              label: "Headline — Accent part (shown in pink)",
+              name: "headlineAccent",
+              widget: "string",
+              hint: 'e.g. "caricature"',
+            }
+          - {
+              label: "Subheadline / Punchline",
+              name: "subheadline",
+              widget: "string",
+              hint: 'e.g. "Caricature in minutes."',
+            }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - {
+              label: "Hero Image Caption",
+              name: "heroCaption",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Gallery Section — Eyebrow",
+              name: "galleryEyebrow",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Gallery Section — Title",
+              name: "galleryTitle",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Packages Section — Eyebrow",
+              name: "packagesEyebrow",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Packages Section — Title",
+              name: "packagesTitle",
+              widget: "string",
+              required: false,
+            }
+
+  - name: "about"
+    label: "About Page"
+    files:
+      - label: "About Content"
+        name: "about"
+        file: "src/data/about.json"
+        fields:
+          - {
+              label: "SEO Title (browser tab / Google title)",
+              name: "seoTitle",
+              widget: "string",
+            }
+          - {
+              label: "SEO Description (Google search snippet)",
+              name: "seoDescription",
+              widget: "text",
+            }
+          - { label: "Page Heading", name: "heading", widget: "string" }
+          - {
+              label: "Intro Line",
+              name: "intro",
+              widget: "string",
+              required: false,
+            }
+          - label: "Body Paragraphs"
+            name: "bodyParagraphs"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - label: "Highlight Badges"
+            name: "highlights"
+            widget: "list"
+            field: { label: "Highlight", name: "highlight", widget: "string" }
+          - {
+              label: "Artist Image",
+              name: "artistImage",
+              widget: "image",
+              required: false,
+            }
+
+  - name: "spot-on-caricature"
+    label: "Spot-On Caricature Page"
+    files:
+      - label: "Page Content"
+        name: "spot-on-caricature"
+        file: "src/data/spot-on-caricature.json"
+        fields:
+          - {
+              label: "SEO Title (browser tab / Google title)",
+              name: "seoTitle",
+              widget: "string",
+            }
+          - {
+              label: "SEO Description (Google search snippet)",
+              name: "seoDescription",
+              widget: "text",
+            }
+          - { label: "Page Heading", name: "heading", widget: "string" }
+          - { label: "Intro Line", name: "intro", widget: "text" }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - label: "Gallery Slideshow"
+        name: "gallery"
+        file: "src/data/gallery.json"
+        fields:
+          - label: "Photos"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+              - {
+                  label: "Alt Text (describe the photo)",
+                  name: "alt",
+                  widget: "string",
+                }
+
+  - name: "styles"
+    label: "Caricature Styles / Packages"
+    files:
+      - label: "Style Options"
+        name: "styles"
+        file: "src/data/styles.json"
+        fields:
+          - label: "Options"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - {
+                  label: "Note (e.g. Head to Toe)",
+                  name: "note",
+                  widget: "string",
+                  required: false,
+                }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Button Text", name: "ctaLabel", widget: "string" }
+              - { label: "Button Link", name: "ctaUrl", widget: "string" }

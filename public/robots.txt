@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://idoartstudios.com.ng/sitemap.xml
