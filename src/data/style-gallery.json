@@ -1,0 +1,48 @@
+{
+  "seoTitle": "Caricature Styles & Prices | Order Online | I Do Art Studios",
+  "seoDescription": "Browse every caricature style from I Do Art Studios — individual portraits, full body, couple, family and live event caricatures. See prices and order on WhatsApp in minutes.",
+  "eyebrow": "CHOOSE YOUR STYLE",
+  "heading": "Style Gallery",
+  "intro": "Pick the style (or styles) you love, set how many you want, and send your order straight to us on WhatsApp. We'll confirm the details and payment with you there.",
+  "currency": "NGN",
+  "orderIntro": "Hello I Do Art Studios! I'd like to order the following caricature(s):",
+  "quoteLabel": "Ask for a quote",
+  "items": [
+    {
+      "name": "Individual Portrait",
+      "price": 15000,
+      "priceNote": "per person · head to shoulder",
+      "description": "A fun, personalised head-to-shoulder caricature of one person. Great as a gift or a profile picture.",
+      "images": [
+        {
+          "image": "/images/uploads/styles/style-individual.png",
+          "alt": "Head and shoulders caricature of a man in a blue cap"
+        }
+      ]
+    },
+    {
+      "name": "Full Body Caricature",
+      "price": 25000,
+      "priceNote": "head to toe",
+      "description": "Head to toe, pose and outfit included. Turn heads with a full-body caricature that tells your whole story.",
+      "images": [
+        {
+          "image": "/images/uploads/styles/style-fullbody.png",
+          "alt": "Full body caricature of a couple posing together"
+        }
+      ]
+    },
+    {
+      "name": "Family / Group Caricature",
+      "price": 50000,
+      "priceNote": "from — final price depends on how many people",
+      "description": "More faces, more smiles. Add your favourite things too — the car, the pets, the hobbies.",
+      "images": [
+        {
+          "image": "/images/uploads/styles/style-family.png",
+          "alt": "Group caricature of three people drawn at an event"
+        }
+      ]
+    }
+  ]
+}

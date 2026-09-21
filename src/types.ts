@@ -73,3 +73,36 @@ export interface ReactionVideoData {
   youtubeId: string;
   caption: string;
 }
+
+export interface StyleGalleryItem {
+  name: string;
+  /** Price in the site's currency (NGN). 0 means "ask for a quote". */
+  price: number;
+  /** Optional line under the price, e.g. "per person" or "from". */
+  priceNote: string;
+  description: string;
+  images: { image: string; alt: string }[];
+}
+
+export interface StyleGalleryData {
+  seoTitle: string;
+  seoDescription: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  currency: string;
+  orderIntro: string;
+  quoteLabel: string;
+  items: StyleGalleryItem[];
+}
+
+export interface ClientLogo {
+  name: string;
+  logo: string;
+  url: string;
+}
+
+export interface ClientsData {
+  title: string;
+  items: ClientLogo[];
+}

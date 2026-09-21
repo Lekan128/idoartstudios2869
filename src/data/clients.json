@@ -1,0 +1,11 @@
+{
+  "title": "Companies we have worked with",
+  "items": [
+    { "name": "Northwind (demo logo — replace me)", "logo": "/images/uploads/clients/demo-northwind.svg", "url": "" },
+    { "name": "Acme Labs (demo logo — replace me)", "logo": "/images/uploads/clients/demo-acme-labs.svg", "url": "" },
+    { "name": "Lumen (demo logo — replace me)", "logo": "/images/uploads/clients/demo-lumen.svg", "url": "" },
+    { "name": "Vertex Media (demo logo — replace me)", "logo": "/images/uploads/clients/demo-vertex.svg", "url": "" },
+    { "name": "Meridian (demo logo — replace me)", "logo": "/images/uploads/clients/demo-meridian.svg", "url": "" },
+    { "name": "Orbit (demo logo — replace me)", "logo": "/images/uploads/clients/demo-orbit.svg", "url": "" }
+  ]
+}

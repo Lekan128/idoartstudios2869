@@ -15,3 +15,41 @@ h2,
 h3 {
   font-family: var(--font-display);
 }
+
+/* Client-logo marquee (see components/layout/ClientLogos.tsx). The track holds two
+   identical copies of the logo row, so shifting it by exactly -50% lands back on
+   a visually identical frame and the loop is seamless. */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 38s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+}
