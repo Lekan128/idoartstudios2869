@@ -1,10 +1,15 @@
+import { useLocation } from "react-router-dom";
 import siteData from "../../data/site.json";
 import type { SiteData } from "../../types";
 
 const site = siteData as SiteData;
 
 export default function WhatsAppButton() {
+  const { pathname } = useLocation();
+
   if (!site.whatsappNumber) return null;
+  // The style gallery has its own sticky WhatsApp order bar in this corner.
+  if (pathname.replace(/\/$/, "") === "/styles") return null;
   const digits = site.whatsappNumber.replace(/[^\d]/g, "");
 
   return (

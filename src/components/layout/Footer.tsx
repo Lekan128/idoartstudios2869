@@ -1,5 +1,6 @@
 import siteData from "../../data/site.json";
 import type { SiteData } from "../../types";
+import ClientLogos from "./ClientLogos";
 
 const site = siteData as SiteData;
 
@@ -8,6 +9,8 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="border-t border-pink-100 bg-white">
+      <ClientLogos />
+
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <p className="text-center font-serif text-lg italic text-neutral-800">
           — {site.footerTagline} —

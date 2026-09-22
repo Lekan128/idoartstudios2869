@@ -6,7 +6,7 @@
       "note": "Head to Shoulder",
       "image": "/images/uploads/styles/style-individual.png",
       "ctaLabel": "Choose This Style",
-      "ctaUrl": "https://forms.gle/ihrUegu9WFixtbVH8"
+      "ctaUrl": "/styles/"
     },
     {
       "title": "Full Body Caricature",
@@ -14,7 +14,7 @@
       "note": "Head to Toe",
       "image": "/images/uploads/styles/style-fullbody.png",
       "ctaLabel": "Choose This Style",
-      "ctaUrl": "https://forms.gle/ihrUegu9WFixtbVH8"
+      "ctaUrl": "/styles/"
     },
     {
       "title": "Family / Group Caricature",
@@ -22,7 +22,7 @@
       "note": "With your favourite things (e.g. car, pets, hobbies)",
       "image": "/images/uploads/styles/style-family.png",
       "ctaLabel": "Choose This Style",
-      "ctaUrl": "https://forms.gle/ihrUegu9WFixtbVH8"
+      "ctaUrl": "/styles/"
     }
   ]
 }

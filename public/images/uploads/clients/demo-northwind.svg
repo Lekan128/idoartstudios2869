@@ -1,0 +1,5 @@
+<svg width="190" height="44" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 44" role="img">
+  <circle cx="20" cy="22" r="13" fill="none" stroke="#1f2937" stroke-width="3.5"/>
+  <path d="M14 28 L20 13 L26 28" fill="none" stroke="#1f2937" stroke-width="3.5" stroke-linejoin="round"/>
+  <text x="44" y="29" font-family="Helvetica,Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="0.5" fill="#1f2937">NORTHWIND</text>
+</svg>

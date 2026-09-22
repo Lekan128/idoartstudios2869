@@ -3,11 +3,26 @@
   "tagline": "CARICATURES · PORTRAITS · MERCHANDISE",
   "logo": "/images/uploads/logo/idoartstudios-logo.png",
   "nav": [
-    { "label": "Home", "href": "/" },
-    { "label": "About", "href": "/about-i-do-art-studios/" },
-    { "label": "Gallery", "href": "/#gallery" },
-    { "label": "Packages", "href": "/#packages" },
-    { "label": "Contact", "href": "/#contact" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "About",
+      "href": "/about-i-do-art-studios/"
+    },
+    {
+      "label": "Gallery",
+      "href": "/#gallery"
+    },
+    {
+      "label": "Styles & Prices",
+      "href": "/styles/"
+    },
+    {
+      "label": "Contact",
+      "href": "/#contact"
+    }
   ],
   "bookEventUrl": "https://forms.gle/ihrUegu9WFixtbVH8",
   "bookEventLabel": "Book an Event",

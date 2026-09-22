@@ -27,6 +27,7 @@ function readJson(rel) {
 
 const about = readJson("src/data/about.json");
 const spotOn = readJson("src/data/spot-on-caricature.json");
+const styleGallery = readJson("src/data/style-gallery.json");
 
 // Every route here matches an old WordPress URL exactly — these are the pages
 // confirmed (via live search results) to be actively ranking, so they need their
@@ -34,6 +35,9 @@ const spotOn = readJson("src/data/spot-on-caricature.json");
 const ROUTES = [
   { slug: "about-i-do-art-studios", title: about.seoTitle, description: about.seoDescription },
   { slug: "spot-on-caricature", title: spotOn.seoTitle, description: spotOn.seoDescription },
+  // Not a legacy URL — a new page, but it carries the prices, so it gets its own
+  // crawlable head and a sitemap entry like the rest.
+  { slug: "styles", title: styleGallery.seoTitle, description: styleGallery.seoDescription },
 ];
 
 const template = readFileSync(path.join(DIST, "index.html"), "utf8");

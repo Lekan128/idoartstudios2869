@@ -1,0 +1,6 @@
+<svg width="120" height="48" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 48" role="img">
+  <rect x="6" y="8" width="16" height="16" rx="3" fill="#1f2937"/>
+  <rect x="6" y="26" width="16" height="16" rx="3" fill="#1f2937" opacity="0.45"/>
+  <text x="32" y="23" font-family="Helvetica,Arial,sans-serif" font-size="17" font-weight="800" fill="#1f2937">ACME</text>
+  <text x="32" y="39" font-family="Helvetica,Arial,sans-serif" font-size="12" font-weight="500" letter-spacing="3" fill="#1f2937">LABS</text>
+</svg>

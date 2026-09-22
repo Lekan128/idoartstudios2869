@@ -256,9 +256,9 @@ collections:
                 }
 
   - name: "styles"
-    label: "Caricature Styles / Packages"
+    label: "Homepage Style Cards"
     files:
-      - label: "Style Options"
+      - label: "Homepage Style Cards"
         name: "styles"
         file: "src/data/styles.json"
         fields:
@@ -277,3 +277,116 @@ collections:
               - { label: "Image", name: "image", widget: "image" }
               - { label: "Button Text", name: "ctaLabel", widget: "string" }
               - { label: "Button Link", name: "ctaUrl", widget: "string" }
+
+  - name: "style-gallery"
+    label: "Style Gallery & Prices"
+    files:
+      - label: "Style Gallery Page"
+        name: "style-gallery"
+        file: "src/data/style-gallery.json"
+        fields:
+          - {
+              label: "SEO Title (browser tab / Google title)",
+              name: "seoTitle",
+              widget: "string",
+            }
+          - {
+              label: "SEO Description (Google search snippet)",
+              name: "seoDescription",
+              widget: "text",
+            }
+          - { label: "Eyebrow (small text above the heading)", name: "eyebrow", widget: "string" }
+          - { label: "Page Heading", name: "heading", widget: "string" }
+          - {
+              label: "Intro Text",
+              name: "intro",
+              widget: "text",
+              required: false,
+            }
+          - {
+              label: "Currency Code",
+              name: "currency",
+              widget: "string",
+              default: "NGN",
+              hint: "Three-letter code. NGN = Nigerian Naira (₦).",
+            }
+          - {
+              label: "WhatsApp Message — Opening Line",
+              name: "orderIntro",
+              widget: "text",
+              hint: "The first line of the WhatsApp message a customer sends you. The list of styles they picked is added under it automatically.",
+            }
+          - {
+              label: 'Label For "No Fixed Price" Styles',
+              name: "quoteLabel",
+              widget: "string",
+              default: "Ask for a quote",
+              hint: "Shown instead of a price whenever a style's price is set to 0.",
+            }
+          - label: "Styles"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Style Name", name: "name", widget: "string" }
+              - {
+                  label: "Price",
+                  name: "price",
+                  widget: "number",
+                  value_type: "int",
+                  min: 0,
+                  hint: "Numbers only, no ₦ or commas — e.g. 25000. Enter 0 for styles that need a custom quote.",
+                }
+              - {
+                  label: "Price Note",
+                  name: "priceNote",
+                  widget: "string",
+                  required: false,
+                  hint: 'Small text under the price, e.g. "per person" or "from".',
+                }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - label: "Images"
+                name: "images"
+                widget: "list"
+                fields:
+                  - { label: "Image", name: "image", widget: "image" }
+                  - {
+                      label: "Alt Text (describe the image)",
+                      name: "alt",
+                      widget: "string",
+                      required: false,
+                    }
+
+  - name: "clients"
+    label: "Companies We've Worked With"
+    files:
+      - label: "Footer Logo Carousel"
+        name: "clients"
+        file: "src/data/clients.json"
+        fields:
+          - {
+              label: "Section Title",
+              name: "title",
+              widget: "string",
+              default: "Companies we have worked with",
+            }
+          - label: "Company Logos"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            hint: "STARTS WITH SIX PLACEHOLDER LOGOS (Northwind, Acme Labs, Lumen, Vertex, Meridian, Orbit) — these are made-up companies, delete them once your real client logos are in. Logos scroll automatically in the footer. For the cleanest look use transparent PNG or SVG files with a similar width. Leave this list empty to hide the whole section."
+            fields:
+              - {
+                  label: "Company Name",
+                  name: "name",
+                  widget: "string",
+                  hint: "Used as the logo's alt text for accessibility and SEO.",
+                }
+              - { label: "Logo", name: "logo", widget: "image" }
+              - {
+                  label: "Website (optional)",
+                  name: "url",
+                  widget: "string",
+                  required: false,
+                  hint: "Full URL, e.g. https://example.com — leave blank for a non-clickable logo.",
+                }
