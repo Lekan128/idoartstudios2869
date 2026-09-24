@@ -1,0 +1,254 @@
+{
+  "seoTitle": "Caricature Prices & Styles | Commission Online | I Do Art Studios",
+  "seoDescription": "Commission a hand-drawn caricature from I Do Art Studios. Three styles from ₦35,000 — Expressive, Classic and Realistic. See the price instantly and order on WhatsApp.",
+  "eyebrow": "COMMISSION A CARICATURE",
+  "heading": "Commission a caricature",
+  "intro": "Pick what you want drawn, choose your style, and see your price straight away — no need to message us first just to ask what it costs.",
+  "priceAnchor": "Styles from ₦35,000",
+  "currency": "NGN",
+  "onRequestLabel": "Price on request",
+  "fromLabel": "from",
+
+  "subjectStepTitle": "What should we draw?",
+  "subjectStepHint": "Every option can include more than one person — you'll choose that in a moment.",
+
+  "styleStepTitle": "Choose your style",
+  "styleStepHint": "The same face, drawn three ways. This is the choice that changes the look the most.",
+  "styleCompareLabel": "See the difference side by side",
+
+  "quantityStepTitle": "How many people?",
+  "quantityStepHint": "Count everyone who should appear in the artwork.",
+
+  "extrasStepTitle": "What else should we include?",
+  "extrasStepHint": "Tell us anything that should appear alongside the person — a car, a pet, the house, tools of the trade, a hobby.",
+  "extrasPlaceholder": "e.g. his red Toyota Corolla, our dog Simba, and a football kit",
+  "extrasPriceNotice": "Extras are quoted individually. The price below is your starting point — we'll confirm the final figure with you on WhatsApp before anything is paid.",
+
+  "addonStepTitle": "Make it a proper gift",
+  "addonStepHint": "Optional. Your artwork is always delivered as a high-resolution digital file.",
+
+  "summaryTitle": "Your order",
+  "orderCtaLabel": "Order on WhatsApp",
+  "orderCtaHint": "Opens WhatsApp with your order already written out. Nothing is paid yet.",
+  "noteLabel": "Anything else we should know? (optional)",
+  "notePlaceholder": "e.g. it's a birthday gift, I need it before Saturday…",
+  "startOverLabel": "Start over",
+
+  "subjects": [
+    {
+      "id": "portrait",
+      "name": "Portrait",
+      "tagline": "Head and shoulders",
+      "description": "The face is the whole story. Perfect as a gift, a profile picture or a framed desk piece.",
+      "image": "/images/uploads/styles/style-individual.png",
+      "alt": "Head and shoulders caricature of a man in a blue cap",
+      "needsExtras": false
+    },
+    {
+      "id": "full-body",
+      "name": "Full Body",
+      "tagline": "Head to toe",
+      "description": "The pose, the outfit, the attitude — drawn head to toe so the whole personality comes through.",
+      "image": "/images/uploads/styles/style-fullbody.png",
+      "alt": "Full body caricature of a couple posing together",
+      "needsExtras": false
+    },
+    {
+      "id": "full-body-extras",
+      "name": "Full Body + Extras",
+      "tagline": "With the things that make it yours",
+      "description": "Everything in Full Body, plus the car, the pet, the house, the business or the hobby that tells people who this is.",
+      "image": "/images/uploads/styles/style-family.png",
+      "alt": "Group caricature of three people drawn at an event",
+      "needsExtras": true
+    }
+  ],
+
+  "styles": [
+    {
+      "id": "expressive",
+      "name": "Expressive",
+      "badge": "",
+      "tagline": "Bold, playful, unmistakably hand-drawn",
+      "description": "A fun and highly expressive caricature. The artist's line work stays clearly visible, with colour painted through the whole drawing. Stronger exaggeration, bigger character.",
+      "bestFor": "Best for a bold, fun piece with an obvious hand-drawn look.",
+      "images": [
+        {
+          "image": "/images/uploads/styles/style-individual.png",
+          "alt": "Expressive style caricature with visible line work and bright colour"
+        },
+        {
+          "image": "/images/uploads/gallery/gallery-1.png",
+          "alt": "Close-up of the expressive style showing the artist's line work"
+        }
+      ]
+    },
+    {
+      "id": "classic",
+      "name": "Classic",
+      "badge": "Most popular",
+      "tagline": "Caricature character, real-world proportions",
+      "description": "A more refined caricature. The line work is still visible, but the body and features are treated far more realistically — the character is there, the proportions and anatomy sit closer to life.",
+      "bestFor": "Best if you want the balance between caricature and realism.",
+      "images": [
+        {
+          "image": "/images/uploads/styles/style-fullbody.png",
+          "alt": "Classic style caricature with refined proportions and visible line work"
+        },
+        {
+          "image": "/images/uploads/gallery/gallery-2.png",
+          "alt": "Close-up of the classic style showing refined finish"
+        }
+      ]
+    },
+    {
+      "id": "realistic",
+      "name": "Realistic",
+      "badge": "Premium",
+      "tagline": "Fully painted, gallery finish",
+      "description": "A fully painted caricature with a realistic finish. The original line work is no longer on show — this is a polished painted artwork that still keeps the exaggeration and character of the subject.",
+      "bestFor": "Best for a sophisticated, detailed painted piece you'd hang on a wall.",
+      "images": [
+        {
+          "image": "/images/uploads/styles/style-family.png",
+          "alt": "Realistic style caricature, fully painted with no visible line work"
+        },
+        {
+          "image": "/images/uploads/gallery/gallery-3.png",
+          "alt": "Close-up of the realistic style showing the painted finish"
+        }
+      ]
+    }
+  ],
+
+  "pricing": [
+    { "subject": "portrait", "style": "expressive", "price": 35000 },
+    { "subject": "portrait", "style": "classic", "price": 50000 },
+    { "subject": "portrait", "style": "realistic", "price": 75000 },
+    { "subject": "full-body", "style": "expressive", "price": 45000 },
+    { "subject": "full-body", "style": "classic", "price": 65000 },
+    { "subject": "full-body", "style": "realistic", "price": 95000 },
+    { "subject": "full-body-extras", "style": "expressive", "price": 55000 },
+    { "subject": "full-body-extras", "style": "classic", "price": 80000 },
+    { "subject": "full-body-extras", "style": "realistic", "price": 115000 }
+  ],
+
+  "quantities": [
+    { "value": 1, "label": "1 person", "onRequest": false },
+    { "value": 2, "label": "2 people", "onRequest": false },
+    { "value": 3, "label": "3 people", "onRequest": false },
+    { "value": 4, "label": "4 people +", "onRequest": true }
+  ],
+  "quantityOnRequestNotice": "For four people and above we price the piece individually — send your order through and we'll come back with an exact figure.",
+
+  "artworkModes": [
+    {
+      "id": "together",
+      "label": "One artwork, everyone together",
+      "hint": "A single piece with all of them in it."
+    },
+    {
+      "id": "separate",
+      "label": "A separate artwork for each person",
+      "hint": "Individual pieces, one per person."
+    }
+  ],
+
+  "addons": [
+    {
+      "id": "print-a4",
+      "name": "A4 print",
+      "description": "Printed on premium matte paper, ready to frame.",
+      "price": 8000
+    },
+    {
+      "id": "print-a3",
+      "name": "A3 print",
+      "description": "The bigger statement piece. Premium matte paper.",
+      "price": 12000
+    },
+    {
+      "id": "framed-a3",
+      "name": "Framed A3",
+      "description": "Printed and framed, ready to hang or hand over.",
+      "price": 25000
+    },
+    {
+      "id": "rush",
+      "name": "Rush delivery",
+      "description": "Moved to the front of the queue and delivered in 72 hours.",
+      "price": 15000
+    }
+  ],
+  "addonNote": "Prints are charged per artwork. Delivery within Lagos is arranged on WhatsApp.",
+
+  "howItWorksTitle": "How it works",
+  "howItWorks": [
+    {
+      "title": "1. Build your order here",
+      "body": "Choose what you want drawn, the style and how many people. Your price updates as you go — no guessing, no waiting for a reply."
+    },
+    {
+      "title": "2. Send it to us on WhatsApp",
+      "body": "One tap sends your order across with everything already written out. We confirm the details, the timeline and the deposit."
+    },
+    {
+      "title": "3. Send your photos, we start drawing",
+      "body": "One clear photo of each person is all we need. You see the artwork and approve it before we finish and deliver."
+    }
+  ],
+
+  "assuranceTitle": "Before you order",
+  "assurances": [
+    {
+      "title": "How long does it take?",
+      "body": "Most commissions are delivered in 3–5 working days once your photos and deposit are in. Add rush delivery for 72 hours."
+    },
+    {
+      "title": "What photo should I send?",
+      "body": "A clear, well-lit photo of each person's face, looking at the camera. A phone photo is perfectly fine — we'll tell you if we need a better one before starting."
+    },
+    {
+      "title": "Can I ask for changes?",
+      "body": "Yes. You see the artwork before it's finished and one round of changes is included in every commission."
+    },
+    {
+      "title": "How do I pay?",
+      "body": "A 50% deposit starts the work, with the balance due before the final file is delivered. We confirm everything on WhatsApp first."
+    }
+  ],
+
+  "priceTableTitle": "All prices at a glance",
+  "priceTableNote": "Prices are per person, in Nigerian Naira. Extras are quoted individually.",
+
+  "faqTitle": "Frequently asked questions",
+  "faqs": [
+    {
+      "question": "What is the difference between the three caricature styles?",
+      "answer": "Expressive keeps the artist's line work clearly on show with strong exaggeration and a playful look. Classic still shows the line work but treats the body and features far more realistically. Realistic is fully painted with a polished finish and no visible line work, while keeping the character of a caricature."
+    },
+    {
+      "question": "How much does a caricature cost in Nigeria?",
+      "answer": "At I Do Art Studios a commissioned caricature starts at ₦35,000 for an Expressive portrait and goes up to ₦115,000 for a fully realistic full-body piece with extras. The exact price depends on the style, whether it is a portrait or full body, and how many people are in the artwork."
+    },
+    {
+      "question": "Can you draw more than one person in the same artwork?",
+      "answer": "Yes. Choose how many people you want and tell us whether they should appear together in one artwork or as separate pieces. For four people and above we price the artwork individually."
+    },
+    {
+      "question": "What are extras?",
+      "answer": "Extras are the things that make the piece personal — a car, a pet, a house, tools of a trade, a hobby or props. They are drawn alongside the person and quoted individually, so we confirm the final price with you on WhatsApp before anything is paid."
+    },
+    {
+      "question": "Do I get a printed artwork or a digital file?",
+      "answer": "Every commission is delivered as a high-resolution digital file. Prints and framing can be added to your order at checkout and are arranged on WhatsApp."
+    },
+    {
+      "question": "Do you draw live at events too?",
+      "answer": "Yes. Live caricature entertainment for weddings, parties and corporate events is our other speciality — use the Book an Event button at the top of the page."
+    }
+  ],
+
+  "whatsappIntro": "Hello I Do Art Studios! I would like to order a commissioned caricature.",
+  "whatsappClosing": "I would like to proceed with the order. Please let me know the next step."
+}

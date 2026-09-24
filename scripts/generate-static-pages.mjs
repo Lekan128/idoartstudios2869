@@ -27,7 +27,52 @@ function readJson(rel) {
 
 const about = readJson("src/data/about.json");
 const spotOn = readJson("src/data/spot-on-caricature.json");
-const styleGallery = readJson("src/data/style-gallery.json");
+const commission = readJson("src/data/commission.json");
+
+/**
+ * Structured data for the prices page. This is emitted into the *static* head rather
+ * than injected by React: the price range and the style questions are exactly what
+ * wins "how much does a caricature cost" searches, and a crawler that doesn't run JS
+ * would otherwise never see them.
+ */
+function commissionJsonLd() {
+  const prices = commission.pricing.filter((p) => p.price > 0).map((p) => p.price);
+
+  const product = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Commissioned Caricature",
+    description: commission.seoDescription,
+    brand: { "@type": "Brand", name: "I Do Art Studios" },
+    image: commission.styles.flatMap((s) => (s.images ?? []).map((i) => `${SITE_URL}${i.image}`)).slice(0, 3),
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: commission.currency,
+      lowPrice: Math.min(...prices),
+      highPrice: Math.max(...prices),
+      offerCount: prices.length,
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/styles/`,
+    },
+  };
+
+  const faq = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: (commission.faqs ?? []).map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+
+  const blocks = [product];
+  if (faq.mainEntity.length) blocks.push(faq);
+
+  return blocks
+    .map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</script>`)
+    .join("\n    ");
+}
 
 // Every route here matches an old WordPress URL exactly — these are the pages
 // confirmed (via live search results) to be actively ranking, so they need their
@@ -37,7 +82,7 @@ const ROUTES = [
   { slug: "spot-on-caricature", title: spotOn.seoTitle, description: spotOn.seoDescription },
   // Not a legacy URL — a new page, but it carries the prices, so it gets its own
   // crawlable head and a sitemap entry like the rest.
-  { slug: "styles", title: styleGallery.seoTitle, description: styleGallery.seoDescription },
+  { slug: "styles", title: commission.seoTitle, description: commission.seoDescription, jsonLd: commissionJsonLd() },
 ];
 
 const template = readFileSync(path.join(DIST, "index.html"), "utf8");
@@ -66,7 +111,8 @@ function replaceHead(html, { title, description, url }) {
 
 for (const route of ROUTES) {
   const url = `${SITE_URL}/${route.slug}/`;
-  const html = replaceHead(template, { title: route.title, description: route.description, url });
+  let html = replaceHead(template, { title: route.title, description: route.description, url });
+  if (route.jsonLd) html = html.replace("</head>", `  ${route.jsonLd}\n  </head>`);
   const dir = path.join(DIST, route.slug);
   mkdirSync(dir, { recursive: true });
   writeFileSync(path.join(dir, "index.html"), html);
