@@ -37,7 +37,7 @@ export default function ClientLogos() {
   if (items.length === 0) return null;
 
   return (
-    <section aria-label={clients.title} className="border-t border-pink-100 bg-white py-10">
+    <section aria-label={clients.title} className="bg-white pb-2 pt-10">
       <h2 className="text-center text-xs font-bold tracking-widest text-neutral-500 uppercase">
         {clients.title}
       </h2>

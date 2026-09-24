@@ -14,7 +14,7 @@ export default function StyleOptions() {
     <section id="packages" className="bg-pink-50/60 py-16 sm:py-20">
       <SectionHeading eyebrow={home.packagesEyebrow} title={home.packagesTitle} />
 
-      <div className="mx-auto mt-10 grid max-w-6xl gap-6 px-4 sm:px-6 md:grid-cols-3">
+      <div className="mx-auto mt-10 grid max-w-6xl gap-5 px-4 sm:px-6 md:grid-cols-3 lg:gap-6">
         {commission.subjects.map((subject) => (
           <StyleCard
             key={subject.id}

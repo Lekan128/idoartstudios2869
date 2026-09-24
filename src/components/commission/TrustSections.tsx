@@ -53,15 +53,17 @@ export function PriceTable({ data }: { data: CommissionData }) {
     <section className="border-t border-pink-100 pt-10">
       <h2 className="text-xl font-extrabold text-neutral-900 sm:text-2xl">{data.priceTableTitle}</h2>
 
-      <div className="mt-5 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-        <table className="w-full min-w-[520px] border-collapse overflow-hidden rounded-2xl bg-white text-sm shadow-sm ring-1 ring-pink-100">
+      {/* Sized to fit a phone without sideways scrolling: a price table you have
+          to swipe to read is no longer "at a glance". */}
+      <div className="mt-5 overflow-x-auto">
+        <table className="w-full border-collapse overflow-hidden rounded-2xl bg-white text-[13px] shadow-sm ring-1 ring-pink-100 sm:text-sm">
           <thead>
             <tr className="bg-pink-50">
-              <th scope="col" className="px-4 py-3 text-left font-bold text-neutral-900">
+              <th scope="col" className="py-3 pl-3 pr-1 text-left font-bold text-neutral-900 sm:px-4">
                 Option
               </th>
               {data.styles.map((style) => (
-                <th key={style.id} scope="col" className="px-4 py-3 text-right font-bold text-neutral-900">
+                <th key={style.id} scope="col" className="px-2 py-3 text-right font-bold text-neutral-900 last:pr-3 sm:px-4 sm:last:pr-4">
                   {style.name}
                 </th>
               ))}
@@ -70,13 +72,13 @@ export function PriceTable({ data }: { data: CommissionData }) {
           <tbody>
             {data.subjects.map((subject) => (
               <tr key={subject.id} className="border-t border-pink-100">
-                <th scope="row" className="px-4 py-3 text-left font-semibold text-neutral-800">
+                <th scope="row" className="py-3 pl-3 pr-1 text-left font-semibold leading-snug text-neutral-800 sm:px-4">
                   {subject.name}
                 </th>
                 {data.styles.map((style) => {
                   const price = priceFor(data, subject.id, style.id);
                   return (
-                    <td key={style.id} className="whitespace-nowrap px-4 py-3 text-right font-semibold text-neutral-900">
+                    <td key={style.id} className="whitespace-nowrap px-2 py-3 text-right font-semibold tabular-nums text-neutral-900 last:pr-3 sm:px-4 sm:last:pr-4">
                       {price !== null ? formatPrice(price, data.currency) : data.onRequestLabel}
                     </td>
                   );

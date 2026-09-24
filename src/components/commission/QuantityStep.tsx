@@ -13,7 +13,7 @@ export default function QuantityStep({ data, quantity, artworkModeId, onQuantity
 
   return (
     <div>
-      <div className="flex flex-wrap gap-3">
+      <div className="grid grid-cols-4 gap-2 sm:flex sm:flex-wrap sm:gap-3">
         {data.quantities.map((option) => {
           const selected = option.value === quantity;
           return (
@@ -22,7 +22,7 @@ export default function QuantityStep({ data, quantity, artworkModeId, onQuantity
               type="button"
               onClick={() => onQuantityChange(option.value)}
               aria-pressed={selected}
-              className={`rounded-full px-5 py-2.5 text-sm font-bold ring-1 transition-colors ${
+              className={`whitespace-nowrap rounded-full px-2 py-2.5 text-sm font-bold ring-1 transition-colors sm:px-5 ${
                 selected
                   ? "bg-pink-600 text-white ring-pink-600"
                   : "bg-white text-neutral-700 ring-pink-200 hover:bg-pink-50"

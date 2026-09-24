@@ -1,9 +1,12 @@
 import { useState } from "react";
 import reactionVideoData from "../../data/reaction-video.json";
 import type { ReactionVideoData } from "../../types";
+import siteData from "../../data/site.json";
+import type { SiteData } from "../../types";
 import SectionHeading from "./SectionHeading";
 
 const video = reactionVideoData as ReactionVideoData;
+const site = siteData as SiteData;
 
 export default function ReactionVideo() {
   const [playing, setPlaying] = useState(false);
@@ -12,10 +15,28 @@ export default function ReactionVideo() {
 
   return (
     <section className="bg-white py-16 sm:py-20">
-      <SectionHeading eyebrow={video.eyebrow} title={video.title} />
+      {/* A portrait video centred on its own leaves wide empty bands on desktop, so
+          from md up the heading sits beside it instead of above it. */}
+      <div className="mx-auto grid max-w-4xl items-center gap-10 px-4 sm:px-6 md:grid-cols-[1fr_auto] md:gap-16">
+        <div>
+          <SectionHeading eyebrow={video.eyebrow} title={video.title} align="responsive" />
+          {video.caption && (
+            <p className="mx-auto mt-4 max-w-sm text-center text-base text-neutral-600 md:mx-0 md:mt-5 md:text-left md:text-lg">
+              {video.caption}
+            </p>
+          )}
+          <a
+            href={site.bookEventUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 hidden items-center gap-2 rounded-full bg-pink-600 px-7 py-3 text-base font-semibold text-white shadow-md transition-colors hover:bg-pink-700 md:inline-flex"
+          >
+            {site.bookEventLabel}
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
 
-      <div className="mx-auto mt-10 max-w-xs px-4 sm:px-6">
-        <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-black shadow-lg">
+        <div className="relative mx-auto aspect-[9/16] w-full max-w-[17rem] overflow-hidden rounded-2xl bg-black shadow-lg md:w-72 md:max-w-none">
           {playing ? (
             <iframe
               className="absolute inset-0 h-full w-full"
@@ -47,8 +68,6 @@ export default function ReactionVideo() {
             </button>
           )}
         </div>
-
-        {video.caption && <p className="mt-4 text-center text-sm text-neutral-600">{video.caption}</p>}
       </div>
     </section>
   );

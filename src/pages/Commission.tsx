@@ -14,8 +14,6 @@ import { Assurances, Faq, HowItWorks, PriceTable } from "../components/commissio
 import {
   buildOrderMessage,
   EMPTY_SELECTION,
-  formatPrice,
-  lowestPriceOverall,
   orderReference,
   quote as buildQuote,
   sanitizeSelection,
@@ -112,21 +110,14 @@ export default function Commission() {
   let stepNumber = 2;
   const nextNumber = () => stepNumber++;
 
-  const from = lowestPriceOverall(data);
-
   return (
-    <div className="bg-pink-50/40 pb-40">
+    // Room at the bottom only while the fixed order bar is showing, so it never covers the FAQ.
+    <div className={`bg-pink-50/40 ${quote.isComplete ? "pb-40" : "pb-16"}`}>
       <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-14">
         <header className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold tracking-widest text-pink-600">{data.eyebrow}</p>
           <h1 className="mt-2 text-3xl font-extrabold text-neutral-900 sm:text-4xl">{data.heading}</h1>
           {data.intro && <p className="mt-4 text-neutral-600">{data.intro}</p>}
-          {from !== null && (
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-neutral-900 shadow-sm ring-1 ring-pink-200">
-              <span className="text-pink-600">★</span>
-              {data.priceAnchor || `${data.fromLabel} ${formatPrice(from, data.currency)}`}
-            </p>
-          )}
         </header>
 
         <div className="mt-10 space-y-8 sm:space-y-10">

@@ -12,16 +12,18 @@ export default function SpotOnCaricature() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
-      <p className="text-xs font-bold tracking-widest text-pink-600">{site.brandName.toUpperCase()}</p>
-      <h1 className="mt-2 text-3xl font-extrabold text-neutral-900 sm:text-4xl">{page.heading}</h1>
-      <p className="mt-3 text-lg font-semibold text-pink-600">{page.intro}</p>
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <div className="max-w-3xl">
+        <p className="text-xs font-bold tracking-widest text-pink-600">{site.brandName.toUpperCase()}</p>
+        <h1 className="mt-2 text-3xl font-extrabold text-neutral-900 sm:text-4xl lg:text-5xl">{page.heading}</h1>
+        <p className="mt-3 text-lg font-semibold text-pink-600">{page.intro}</p>
+      </div>
 
-      <div className="mt-8 space-y-4">
+      <div className="mt-10 grid gap-4 md:grid-cols-3">
         {page.sections.map((section, i) => (
-          <div key={i} className="rounded-xl bg-pink-50 p-5">
-            <h2 className="text-base font-bold text-neutral-900">{section.title}</h2>
-            <p className="mt-1 text-neutral-700">{section.body}</p>
+          <div key={i} className="rounded-2xl bg-pink-50 p-6">
+            <h2 className="text-lg font-bold text-neutral-900">{section.title}</h2>
+            <p className="mt-2 text-neutral-700">{section.body}</p>
           </div>
         ))}
       </div>

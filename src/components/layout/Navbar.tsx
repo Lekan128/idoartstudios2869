@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import siteData from "../../data/site.json";
 import type { SiteData } from "../../types";
 
@@ -8,15 +8,20 @@ const site = siteData as SiteData;
 function NavItem({ href, className, onClick, children }: { href: string; className: string; onClick?: () => void; children: React.ReactNode }) {
   if (href.includes("#")) {
     return (
-      <a href={href} className={className} onClick={onClick}>
+      <a href={href} className={`${className} text-neutral-700`} onClick={onClick}>
         {children}
       </a>
     );
   }
   return (
-    <Link to={href} className={className} onClick={onClick}>
+    <NavLink
+      to={href}
+      end
+      className={({ isActive }) => `${className} ${isActive ? "text-pink-600" : "text-neutral-700"}`}
+      onClick={onClick}
+    >
       {children}
-    </Link>
+    </NavLink>
   );
 }
 
@@ -35,7 +40,7 @@ export default function Navbar() {
             <NavItem
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-neutral-700 transition-colors hover:text-pink-600"
+              className="text-sm font-semibold transition-colors hover:text-pink-600"
             >
               {item.label}
             </NavItem>
@@ -66,13 +71,13 @@ export default function Navbar() {
 
       {open && (
         <div className="border-t border-pink-100 bg-white px-4 py-4 md:hidden">
-          <nav className="flex flex-col gap-4">
+          <nav className="flex flex-col gap-1">
             {site.nav.map((item) => (
               <NavItem
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="text-sm font-medium text-neutral-700"
+                className="rounded-lg px-2 py-2.5 text-base font-semibold hover:bg-pink-50"
               >
                 {item.label}
               </NavItem>
@@ -81,7 +86,7 @@ export default function Navbar() {
               href={site.bookEventUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-pink-600 px-5 py-2 text-center text-sm font-semibold text-white"
+              className="mt-3 rounded-full bg-pink-600 px-5 py-3 text-center text-base font-semibold text-white"
             >
               {site.bookEventLabel}
             </a>

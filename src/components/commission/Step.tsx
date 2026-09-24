@@ -18,11 +18,11 @@ interface Props {
 export default function Step({ id, index, title, hint, answer, children }: Props) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-24 border-t border-pink-100 pt-8 sm:pt-10">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <h2 id={`${id}-title`} className="flex items-baseline gap-3 text-xl font-extrabold text-neutral-900 sm:text-2xl">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+        <h2 id={`${id}-title`} className="flex items-center gap-3 text-xl font-extrabold text-neutral-900 sm:text-2xl">
           <span
             aria-hidden="true"
-            className="inline-flex h-7 w-7 shrink-0 translate-y-0.5 items-center justify-center rounded-full bg-pink-600 text-sm font-bold text-white"
+            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pink-600 font-sans text-sm font-bold text-white"
           >
             {index}
           </span>

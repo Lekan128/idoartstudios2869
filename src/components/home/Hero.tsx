@@ -9,13 +9,13 @@ const site = siteData as SiteData;
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-pink-50">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-24">
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:py-20">
         <div>
           <p className="text-sm font-bold tracking-wide text-pink-600">{home.eyebrow}</p>
-          <h1 className="mt-3 text-5xl font-extrabold leading-tight text-neutral-900 sm:text-6xl">
+          <h1 className="mt-3 text-5xl font-extrabold leading-[1.05] text-neutral-900 sm:text-6xl lg:text-7xl">
             {home.headlinePlain} <span className="text-pink-600">{home.headlineAccent}</span>
           </h1>
-          <p className="mt-5 max-w-md text-lg font-medium text-neutral-700">{home.subheadline}</p>
+          <p className="mt-5 max-w-md text-lg font-medium text-neutral-700 sm:text-xl">{home.subheadline}</p>
 
           <a
             href={site.bookEventUrl}
@@ -37,7 +37,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-md">
+        <div className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-md">
           <div className="aspect-square overflow-hidden rounded-full border-4 border-white bg-white shadow-xl">
             <img
               src={home.heroImage}
@@ -45,7 +45,7 @@ export default function Hero() {
               className="h-full w-full object-cover"
             />
           </div>
-          <p className="absolute -right-2 top-4 max-w-[9rem] rotate-3 rounded-lg bg-white/90 px-3 py-2 text-xs font-semibold text-neutral-800 shadow sm:-right-6">
+          <p className="absolute -right-1 top-4 max-w-[9rem] rotate-3 rounded-lg bg-white/90 px-3 py-2 text-xs font-semibold text-neutral-800 shadow sm:-right-6">
             {home.heroCaption}
           </p>
         </div>
