@@ -255,35 +255,16 @@ collections:
                   widget: "string",
                 }
 
-  - name: "styles"
-    label: "Homepage Style Cards"
+  # Replaces the old "Homepage Style Cards" and "Style Gallery & Prices" collections.
+  # Everything the ordering flow shows — the options, the styles, the 3x3 price
+  # matrix, the add-ons and the reassurance copy — is edited here, and the homepage
+  # cards read the same data so the two can never disagree on price.
+  - name: "commission"
+    label: "Caricature Prices & Ordering"
     files:
-      - label: "Homepage Style Cards"
-        name: "styles"
-        file: "src/data/styles.json"
-        fields:
-          - label: "Options"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - {
-                  label: "Note (e.g. Head to Toe)",
-                  name: "note",
-                  widget: "string",
-                  required: false,
-                }
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Button Text", name: "ctaLabel", widget: "string" }
-              - { label: "Button Link", name: "ctaUrl", widget: "string" }
-
-  - name: "style-gallery"
-    label: "Style Gallery & Prices"
-    files:
-      - label: "Style Gallery Page"
-        name: "style-gallery"
-        file: "src/data/style-gallery.json"
+      - label: "Ordering Page"
+        name: "commission"
+        file: "src/data/commission.json"
         fields:
           - {
               label: "SEO Title (browser tab / Google title)",
@@ -297,11 +278,13 @@ collections:
             }
           - { label: "Eyebrow (small text above the heading)", name: "eyebrow", widget: "string" }
           - { label: "Page Heading", name: "heading", widget: "string" }
+          - { label: "Intro Text", name: "intro", widget: "text", required: false }
           - {
-              label: "Intro Text",
-              name: "intro",
-              widget: "text",
+              label: "Price Badge (under the intro)",
+              name: "priceAnchor",
+              widget: "string",
               required: false,
+              hint: 'Shown as a badge near the top, e.g. "Styles from ₦35,000". Leave blank to show the lowest price automatically.',
             }
           - {
               label: "Currency Code",
@@ -310,52 +293,223 @@ collections:
               default: "NGN",
               hint: "Three-letter code. NGN = Nigerian Naira (₦).",
             }
+
+          # --- Step 1 ---------------------------------------------------------
+          - label: "STEP 1 — What we draw"
+            name: "subjects"
+            widget: "list"
+            summary: "{{fields.name}}"
+            hint: "The first choice a customer makes. The ID is used in the price table below and in links — only change it if you also change it everywhere else."
+            fields:
+              - {
+                  label: "ID (no spaces, lowercase)",
+                  name: "id",
+                  widget: "string",
+                  hint: 'e.g. "portrait". Must match the ID used in the Price Table section.',
+                }
+              - { label: "Name", name: "name", widget: "string" }
+              - {
+                  label: "Short Tagline",
+                  name: "tagline",
+                  widget: "string",
+                  required: false,
+                  hint: 'e.g. "Head and shoulders".',
+                }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Example Image", name: "image", widget: "image" }
+              - { label: "Alt Text (describe the image)", name: "alt", widget: "string", required: false }
+              - {
+                  label: "Ask the customer to describe extras?",
+                  name: "needsExtras",
+                  widget: "boolean",
+                  default: false,
+                  hint: "Turn on for the option that includes a car, pet, house, hobby etc. The customer gets a box to describe them and the order is flagged for you to confirm the price.",
+                }
+
+          # --- Step 2 ---------------------------------------------------------
+          - label: "STEP 2 — Artwork styles"
+            name: "styles"
+            widget: "list"
+            summary: "{{fields.name}}"
+            hint: "IMPORTANT: the example images should ideally show THE SAME PERSON drawn in all three styles. That single change does more to sell the higher styles than any wording — a customer cannot pay for a difference they cannot see."
+            fields:
+              - {
+                  label: "ID (no spaces, lowercase)",
+                  name: "id",
+                  widget: "string",
+                  hint: 'e.g. "classic". Must match the ID used in the Price Table section.',
+                }
+              - { label: "Name", name: "name", widget: "string" }
+              - {
+                  label: "Badge",
+                  name: "badge",
+                  widget: "string",
+                  required: false,
+                  hint: 'Ribbon on the card, e.g. "Most popular". Leave blank for no badge.',
+                }
+              - { label: "Short Tagline", name: "tagline", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - {
+                  label: '"Best for…" Line',
+                  name: "bestFor",
+                  widget: "text",
+                  required: false,
+                  hint: "Tells the customer who this style suits. This is the line that makes the choice easy.",
+                }
+              - label: "Example Images"
+                name: "images"
+                widget: "list"
+                hint: "Two works best: the full artwork, then a close-up showing the finish."
+                fields:
+                  - { label: "Image", name: "image", widget: "image" }
+                  - { label: "Alt Text", name: "alt", widget: "string", required: false }
+
+          # --- Prices ---------------------------------------------------------
+          - label: "PRICE TABLE (per person)"
+            name: "pricing"
+            widget: "list"
+            summary: "{{fields.subject}} + {{fields.style}} — {{fields.price}}"
+            hint: "One row per combination. Any combination you leave out (or set to 0) shows as 'Price on request' instead of a number."
+            fields:
+              - label: "Option"
+                name: "subject"
+                widget: "select"
+                options:
+                  - { label: "Portrait", value: "portrait" }
+                  - { label: "Full Body", value: "full-body" }
+                  - { label: "Full Body + Extras", value: "full-body-extras" }
+              - label: "Style"
+                name: "style"
+                widget: "select"
+                options:
+                  - { label: "Expressive", value: "expressive" }
+                  - { label: "Classic", value: "classic" }
+                  - { label: "Realistic", value: "realistic" }
+              - {
+                  label: "Price (per person)",
+                  name: "price",
+                  widget: "number",
+                  value_type: "int",
+                  min: 0,
+                  hint: "Numbers only, no ₦ or commas — e.g. 50000. Enter 0 for 'Price on request'.",
+                }
+
+          # --- Step 3 ---------------------------------------------------------
+          - label: "STEP 3 — Number of people"
+            name: "quantities"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Number", name: "value", widget: "number", value_type: "int", min: 1 }
+              - { label: "Button Label", name: "label", widget: "string" }
+              - {
+                  label: "Price on request?",
+                  name: "onRequest",
+                  widget: "boolean",
+                  default: false,
+                  hint: "Turn on for the open-ended top option (e.g. 4 people +). No total is shown and you quote it on WhatsApp.",
+                }
           - {
-              label: "WhatsApp Message — Opening Line",
-              name: "orderIntro",
+              label: "Notice shown for 'price on request' group sizes",
+              name: "quantityOnRequestNotice",
               widget: "text",
-              hint: "The first line of the WhatsApp message a customer sends you. The list of styles they picked is added under it automatically.",
             }
-          - {
-              label: 'Label For "No Fixed Price" Styles',
-              name: "quoteLabel",
-              widget: "string",
-              default: "Ask for a quote",
-              hint: "Shown instead of a price whenever a style's price is set to 0.",
-            }
-          - label: "Styles"
-            name: "items"
+          - label: "One artwork or separate artworks?"
+            name: "artworkModes"
+            widget: "list"
+            summary: "{{fields.label}}"
+            hint: "Asked whenever more than one person is selected. This is what stops a customer expecting one group piece for the price of two separate ones."
+            fields:
+              - { label: "ID", name: "id", widget: "string", hint: 'Keep these as "together" and "separate".' }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Small Print", name: "hint", widget: "string", required: false }
+
+          # --- Add-ons --------------------------------------------------------
+          - label: "OPTIONAL EXTRAS (prints, framing, rush)"
+            name: "addons"
             widget: "list"
             summary: "{{fields.name}} — {{fields.price}}"
+            hint: "Offered last, after the customer has chosen a style. Charged per artwork. Leave the list empty to hide this step."
             fields:
-              - { label: "Style Name", name: "name", widget: "string" }
+              - { label: "ID (no spaces, lowercase)", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Description", name: "description", widget: "string", required: false }
               - {
                   label: "Price",
                   name: "price",
                   widget: "number",
                   value_type: "int",
                   min: 0,
-                  hint: "Numbers only, no ₦ or commas — e.g. 25000. Enter 0 for styles that need a custom quote.",
+                  hint: "Numbers only — e.g. 8000.",
                 }
-              - {
-                  label: "Price Note",
-                  name: "priceNote",
-                  widget: "string",
-                  required: false,
-                  hint: 'Small text under the price, e.g. "per person" or "from".',
-                }
-              - { label: "Description", name: "description", widget: "text", required: false }
-              - label: "Images"
-                name: "images"
-                widget: "list"
-                fields:
-                  - { label: "Image", name: "image", widget: "image" }
-                  - {
-                      label: "Alt Text (describe the image)",
-                      name: "alt",
-                      widget: "string",
-                      required: false,
-                    }
+          - { label: "Note under the extras", name: "addonNote", widget: "string", required: false }
+
+          # --- Reassurance ----------------------------------------------------
+          - { label: '"How it works" — Title', name: "howItWorksTitle", widget: "string" }
+          - label: '"How it works" — Steps'
+            name: "howItWorks"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+          - { label: '"Before you order" — Title', name: "assuranceTitle", widget: "string" }
+          - label: '"Before you order" — Answers'
+            name: "assurances"
+            widget: "list"
+            summary: "{{fields.title}}"
+            hint: "CHECK THESE ARE TRUE BEFORE GOING LIVE — the turnaround time, revisions and deposit terms here are starting suggestions, not confirmed policy. These four answers are what stop a sale, so they are worth getting exactly right."
+            fields:
+              - { label: "Question", name: "title", widget: "string" }
+              - { label: "Answer", name: "body", widget: "text" }
+          - { label: "Price Table — Title", name: "priceTableTitle", widget: "string" }
+          - { label: "Price Table — Note", name: "priceTableNote", widget: "string", required: false }
+          - { label: "FAQ — Title", name: "faqTitle", widget: "string" }
+          - label: "FAQ — Questions"
+            name: "faqs"
+            widget: "list"
+            summary: "{{fields.question}}"
+            hint: "These also appear in Google search results as expandable questions, so write the answers the way a customer would ask them."
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Answer", name: "answer", widget: "text" }
+
+          # --- WhatsApp -------------------------------------------------------
+          - {
+              label: "WhatsApp Message — Opening Line",
+              name: "whatsappIntro",
+              widget: "text",
+              hint: "The customer's selection (type, style, people, total) is added underneath automatically.",
+            }
+          - { label: "WhatsApp Message — Closing Line", name: "whatsappClosing", widget: "text" }
+
+          # --- Wording --------------------------------------------------------
+          - {
+              label: "Label for 'Price on request'",
+              name: "onRequestLabel",
+              widget: "string",
+              default: "Price on request",
+            }
+          - { label: "Label for 'from'", name: "fromLabel", widget: "string", default: "from" }
+          - { label: "Step 1 — Heading", name: "subjectStepTitle", widget: "string" }
+          - { label: "Step 1 — Hint", name: "subjectStepHint", widget: "string", required: false }
+          - { label: "Step 2 — Heading", name: "styleStepTitle", widget: "string" }
+          - { label: "Step 2 — Hint", name: "styleStepHint", widget: "string", required: false }
+          - { label: "Step 2 — Compare Link Text", name: "styleCompareLabel", widget: "string" }
+          - { label: "Step 3 — Heading", name: "quantityStepTitle", widget: "string" }
+          - { label: "Step 3 — Hint", name: "quantityStepHint", widget: "string", required: false }
+          - { label: "Extras Step — Heading", name: "extrasStepTitle", widget: "string" }
+          - { label: "Extras Step — Hint", name: "extrasStepHint", widget: "string", required: false }
+          - { label: "Extras Step — Placeholder", name: "extrasPlaceholder", widget: "string", required: false }
+          - { label: "Extras Step — Price Notice", name: "extrasPriceNotice", widget: "text" }
+          - { label: "Extras Step (add-ons) — Heading", name: "addonStepTitle", widget: "string" }
+          - { label: "Extras Step (add-ons) — Hint", name: "addonStepHint", widget: "string", required: false }
+          - { label: "Order Summary — Title", name: "summaryTitle", widget: "string" }
+          - { label: "Order Button Text", name: "orderCtaLabel", widget: "string" }
+          - { label: "Order Button — Small Print", name: "orderCtaHint", widget: "string", required: false }
+          - { label: "Order Note — Label", name: "noteLabel", widget: "string" }
+          - { label: "Order Note — Placeholder", name: "notePlaceholder", widget: "string", required: false }
+          - { label: "Start Over Link Text", name: "startOverLabel", widget: "string" }
 
   - name: "clients"
     label: "Companies We've Worked With"

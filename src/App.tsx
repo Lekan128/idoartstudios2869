@@ -5,7 +5,7 @@ import About from "./pages/About";
 import SpotOnCaricature from "./pages/SpotOnCaricature";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
-import StyleGallery from "./pages/StyleGallery";
+import Commission from "./pages/Commission";
 
 export default function App() {
   return (
@@ -21,8 +21,8 @@ export default function App() {
         <Route path="/spot-on-caricature/" element={<SpotOnCaricature />} />
         {/* New page, no legacy URL to honour — both slash forms routed so the
             static /styles/index.html head and in-app links agree. */}
-        <Route path="/styles" element={<StyleGallery />} />
-        <Route path="/styles/" element={<StyleGallery />} />
+        <Route path="/styles" element={<Commission />} />
+        <Route path="/styles/" element={<Commission />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>

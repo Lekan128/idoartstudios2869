@@ -1,34 +1,48 @@
 import { Link } from "react-router-dom";
-import type { StyleOption } from "../../types";
+import type { CommissionSubject } from "../../types";
+import { formatPrice } from "../../lib/commission";
 
-export default function StyleCard({ title, description, note, image, ctaLabel, ctaUrl }: StyleOption) {
-  // The CTA can point at an in-app page (the style gallery) or an external
-  // link like the booking form — route the two differently so internal links
-  // don't cost a full page reload.
-  const internal = ctaUrl.startsWith("/");
-  const ctaClass =
-    "mt-5 block w-full rounded-full bg-pink-600 px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-pink-700";
+interface Props {
+  subject: CommissionSubject;
+  from: number | null;
+  currency: string;
+  fromLabel: string;
+}
 
+/**
+ * Homepage card for one thing we draw. It reads straight from the commission data
+ * so the price shown here can never drift from the price on the ordering page,
+ * and it deep-links into that page with the option already chosen.
+ */
+export default function StyleCard({ subject, from, currency, fromLabel }: Props) {
   return (
     <div className="flex flex-col items-center rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-pink-100">
       <div className="aspect-square w-full overflow-hidden rounded-xl bg-pink-50">
-        <img src={image} alt={title} className="h-full w-full object-cover" loading="lazy" />
+        <img
+          src={subject.image}
+          alt={subject.alt || subject.name}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
       </div>
 
-      <h3 className="mt-5 text-lg font-bold text-neutral-900">{title}</h3>
-      <p className="mt-2 text-sm text-neutral-600">{description}</p>
+      <h3 className="mt-5 text-lg font-bold text-neutral-900">{subject.name}</h3>
+      <p className="text-xs font-semibold uppercase tracking-wide text-pink-600">{subject.tagline}</p>
+      <p className="mt-2 flex-1 text-sm text-neutral-600">{subject.description}</p>
 
-      {internal ? (
-        <Link to={ctaUrl} className={ctaClass}>
-          {ctaLabel} →
-        </Link>
-      ) : (
-        <a href={ctaUrl} target="_blank" rel="noopener noreferrer" className={ctaClass}>
-          {ctaLabel} →
-        </a>
+      {from !== null && (
+        <p className="mt-4 text-sm font-bold text-neutral-900">
+          <span className="font-normal text-neutral-500">{fromLabel} </span>
+          {formatPrice(from, currency)}
+        </p>
       )}
 
-      <p className="mt-3 text-xs text-neutral-500">{note}</p>
+      <Link
+        to={`/styles/?type=${subject.id}`}
+        className="mt-4 block w-full rounded-full bg-pink-600 px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-pink-700"
+      >
+        See styles &amp; prices →
+      </Link>
     </div>
   );
 }

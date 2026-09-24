@@ -1,12 +1,13 @@
-import homeData from "../../data/home.json";
 import { Link } from "react-router-dom";
-import stylesData from "../../data/styles.json";
-import type { HomeData, StyleOption } from "../../types";
+import homeData from "../../data/home.json";
+import commissionData from "../../data/commission.json";
+import type { CommissionData, HomeData } from "../../types";
+import { lowestPriceForSubject } from "../../lib/commission";
 import SectionHeading from "./SectionHeading";
 import StyleCard from "./StyleCard";
 
 const home = homeData as HomeData;
-const styles = (stylesData as { items: StyleOption[] }).items;
+const commission = commissionData as CommissionData;
 
 export default function StyleOptions() {
   return (
@@ -14,8 +15,14 @@ export default function StyleOptions() {
       <SectionHeading eyebrow={home.packagesEyebrow} title={home.packagesTitle} />
 
       <div className="mx-auto mt-10 grid max-w-6xl gap-6 px-4 sm:px-6 md:grid-cols-3">
-        {styles.map((style, i) => (
-          <StyleCard key={i} {...style} />
+        {commission.subjects.map((subject) => (
+          <StyleCard
+            key={subject.id}
+            subject={subject}
+            from={lowestPriceForSubject(commission, subject.id)}
+            currency={commission.currency}
+            fromLabel={commission.fromLabel}
+          />
         ))}
       </div>
 
