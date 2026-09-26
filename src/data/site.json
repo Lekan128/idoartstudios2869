@@ -1,7 +1,5 @@
 {
-  "brandName": "I Do Art Studios",
-  "tagline": "CARICATURES · PORTRAITS · MERCHANDISE",
-  "logo": "/images/uploads/logo/idoartstudios-logo.png",
+  "bookEventLabel": "Book an Event",
   "nav": [
     {
       "label": "Home",
@@ -24,11 +22,13 @@
       "href": "/#contact"
     }
   ],
-  "bookEventUrl": "https://forms.gle/ihrUegu9WFixtbVH8",
-  "bookEventLabel": "Book an Event",
+  "facebookUrl": "",
+  "logo": "/images/uploads/whatsapp-image-2026-09-26-at-3.37.12-pm-1-.jpeg",
+  "tagline": "CARICATURES · PORTRAITS · MERCHANDISE",
+  "brandName": "I Do Art Studios",
+  "footerTagline": "Your Memories, Our Caricature",
   "whatsappNumber": "+2349130534038",
   "contactEmail": "",
   "instagramUrl": "",
-  "facebookUrl": "",
-  "footerTagline": "Your Memories, Our Caricature"
+  "bookEventUrl": "https://forms.gle/ihrUegu9WFixtbVH8"
 }
