@@ -32,10 +32,10 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-pink-100 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <img src={site.logo} alt={site.brandName} className="h-10 w-auto sm:h-12" />
+          <img src={site.logo} alt={site.brandName} className="h-12 w-auto sm:h-16" />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
           {site.nav.map((item) => (
             <NavItem
               key={item.href}
@@ -51,7 +51,7 @@ export default function Navbar() {
           href={site.bookEventUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden rounded-full bg-pink-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-pink-700 md:inline-flex"
+          className="hidden rounded-full bg-pink-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-pink-700 lg:inline-flex"
         >
           {site.bookEventLabel}
         </a>
@@ -59,7 +59,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-neutral-800 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-neutral-800 lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
         >
@@ -70,7 +70,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-pink-100 bg-white px-4 py-4 md:hidden">
+        <div className="border-t border-pink-100 bg-white px-4 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
             {site.nav.map((item) => (
               <NavItem

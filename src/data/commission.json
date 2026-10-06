@@ -24,8 +24,6 @@
   "extrasPlaceholder": "e.g. his red Toyota Corolla, our dog Simba, and a football kit",
   "extrasPriceNotice": "Extras are quoted individually. The price below is your starting point — we'll confirm the final figure with you on WhatsApp before anything is paid.",
 
-  "addonStepTitle": "Make it a proper gift",
-  "addonStepHint": "Optional. Your artwork is always delivered as a high-resolution digital file.",
 
   "summaryTitle": "Your order",
   "orderCtaLabel": "Send my order",
@@ -40,8 +38,8 @@
       "name": "Portrait",
       "tagline": "Head and shoulders",
       "description": "The face is the whole story. Perfect as a gift, a profile picture or a framed desk piece.",
-      "image": "/images/uploads/styles/style-individual.png",
-      "alt": "Head and shoulders caricature of a man in a blue cap",
+      "image": "/images/uploads/styles/subject-portrait.png",
+      "alt": "Head and shoulders caricature of a bearded man in glasses",
       "needsExtras": false
     },
     {
@@ -49,8 +47,8 @@
       "name": "Full Body",
       "tagline": "Head to toe",
       "description": "The pose, the outfit, the attitude — drawn head to toe so the whole personality comes through.",
-      "image": "/images/uploads/styles/style-fullbody.png",
-      "alt": "Full body caricature of a couple posing together",
+      "image": "/images/uploads/styles/subject-full-body.png",
+      "alt": "Head-to-toe caricature of a bearded man in glasses pointing at the viewer",
       "needsExtras": false
     },
     {
@@ -58,8 +56,8 @@
       "name": "Full Body + Extras",
       "tagline": "With the things that make it yours",
       "description": "Everything in Full Body, plus the car, the pet, the house, the business or the hobby that tells people who this is.",
-      "image": "/images/uploads/styles/style-family.png",
-      "alt": "Group caricature of three people drawn at an event",
+      "image": "/images/uploads/styles/subject-full-body-extras.png",
+      "alt": "Caricature of a bearded man in glasses leaning on his sports car",
       "needsExtras": true
     }
   ],
@@ -154,34 +152,6 @@
     }
   ],
 
-  "addons": [
-    {
-      "id": "print-a4",
-      "name": "A4 print",
-      "description": "Printed on premium matte paper, ready to frame.",
-      "price": 8000
-    },
-    {
-      "id": "print-a3",
-      "name": "A3 print",
-      "description": "The bigger statement piece. Premium matte paper.",
-      "price": 12000
-    },
-    {
-      "id": "framed-a3",
-      "name": "Framed A3",
-      "description": "Printed and framed, ready to hang or hand over.",
-      "price": 25000
-    },
-    {
-      "id": "rush",
-      "name": "Rush delivery",
-      "description": "Moved to the front of the queue and delivered in 72 hours.",
-      "price": 15000
-    }
-  ],
-  "addonNote": "Prints are charged per artwork. Delivery within Lagos is arranged on WhatsApp.",
-
   "howItWorksTitle": "How it works",
   "howItWorks": [
     {
@@ -202,7 +172,7 @@
   "assurances": [
     {
       "title": "How long does it take?",
-      "body": "Most commissions are delivered in 3–5 working days once your photos and deposit are in. Add rush delivery for 72 hours."
+      "body": "Most commissions are delivered in 3–5 working days once your photos and deposit are in. Need it sooner? Ask us about rush delivery on WhatsApp."
     },
     {
       "title": "What photo should I send?",
@@ -241,7 +211,7 @@
     },
     {
       "question": "Do I get a printed artwork or a digital file?",
-      "answer": "Every commission is delivered as a high-resolution digital file. Prints and framing can be added to your order at checkout and are arranged on WhatsApp."
+      "answer": "Every commission is delivered as a high-resolution digital file. Prints and framing can be arranged with us on WhatsApp."
     },
     {
       "question": "Do you draw live at events too?",

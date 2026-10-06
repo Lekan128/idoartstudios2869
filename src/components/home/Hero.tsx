@@ -7,15 +7,30 @@ const home = homeData as HomeData;
 const site = siteData as SiteData;
 
 export default function Hero() {
+  const bg = home.heroBackgroundImage;
+
   return (
-    <section id="top" className="relative overflow-hidden bg-pink-50">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:py-20">
+    <section id="top" className={`relative overflow-hidden ${bg ? "bg-neutral-900" : "bg-pink-50"}`}>
+      {bg && (
+        <>
+          <img
+            src={bg}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div aria-hidden="true" className="absolute inset-0 bg-black/65" />
+        </>
+      )}
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:py-20">
         <div>
-          <p className="text-sm font-bold tracking-wide text-pink-600">{home.eyebrow}</p>
-          <h1 className="mt-3 text-5xl font-extrabold leading-[1.05] text-neutral-900 sm:text-6xl lg:text-7xl">
-            {home.headlinePlain} <span className="text-pink-600">{home.headlineAccent}</span>
+          <p className={`text-sm font-bold tracking-wide ${bg ? "text-pink-400" : "text-pink-600"}`}>{home.eyebrow}</p>
+          <h1
+            className={`mt-3 text-5xl font-extrabold leading-[1.05] sm:text-6xl lg:text-7xl ${bg ? "text-white" : "text-neutral-900"}`}
+          >
+            {home.headlinePlain} <span className={bg ? "text-pink-500" : "text-pink-600"}>{home.headlineAccent}</span>
           </h1>
-          <p className="mt-5 max-w-md text-lg font-medium text-neutral-700 sm:text-xl">{home.subheadline}</p>
+          <p className={`mt-5 max-w-md text-lg font-medium sm:text-xl ${bg ? "text-neutral-200" : "text-neutral-700"}`}>{home.subheadline}</p>
 
           <a
             href={site.bookEventUrl}
@@ -30,7 +45,9 @@ export default function Hero() {
           <div>
             <Link
               to="/spot-on-caricature/"
-              className="mt-4 inline-block text-sm font-semibold text-neutral-600 underline decoration-pink-300 underline-offset-4 hover:text-pink-600"
+              className={`mt-4 inline-block text-sm font-semibold underline decoration-pink-300 underline-offset-4 ${
+                bg ? "text-neutral-200 hover:text-pink-300" : "text-neutral-600 hover:text-pink-600"
+              }`}
             >
               Learn about our spot-on caricature service →
             </Link>

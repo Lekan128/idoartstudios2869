@@ -1,5 +1,4 @@
 import type {
-  CommissionAddon,
   CommissionArtworkMode,
   CommissionData,
   CommissionStyle,
@@ -13,7 +12,6 @@ export interface Selection {
   quantity: number;
   artworkModeId: string;
   extras: string;
-  addonIds: string[];
   note: string;
 }
 
@@ -23,7 +21,6 @@ export const EMPTY_SELECTION: Selection = {
   quantity: 1,
   artworkModeId: "together",
   extras: "",
-  addonIds: [],
   note: "",
 };
 
@@ -59,23 +56,13 @@ export function lowestPriceOverall(data: CommissionData): number | null {
   return prices.length ? Math.min(...prices) : null;
 }
 
-export interface QuoteAddonLine {
-  addon: CommissionAddon;
-  quantity: number;
-  total: number;
-}
-
 export interface Quote {
   subject: CommissionSubject | null;
   style: CommissionStyle | null;
   artworkMode: CommissionArtworkMode | null;
   quantity: number;
-  /** How many physical pieces this is — drives add-on pricing and the summary wording. */
-  artworkCount: number;
   unitPrice: number | null;
   artworkSubtotal: number | null;
-  addonLines: QuoteAddonLine[];
-  addonsTotal: number;
   /** null whenever the figure can't be calculated — see `onRequest`. */
   total: number | null;
   /** True when the final price has to be confirmed by hand on WhatsApp. */
@@ -96,15 +83,6 @@ export function quote(data: CommissionData, selection: Selection): Quote {
 
   const unitPrice = priceFor(data, selection.subjectId, selection.styleId);
 
-  // "Everyone together" is one physical piece however many faces are in it;
-  // "separate" is one piece each. Add-ons (prints, frames) follow the pieces.
-  const artworkCount = artworkMode?.id === "separate" ? Math.max(1, selection.quantity) : 1;
-
-  const addonLines: QuoteAddonLine[] = data.addons
-    .filter((a) => selection.addonIds.includes(a.id))
-    .map((addon) => ({ addon, quantity: artworkCount, total: addon.price * artworkCount }));
-  const addonsTotal = addonLines.reduce((sum, line) => sum + line.total, 0);
-
   const onRequestReasons: string[] = [];
   if (quantityOnRequest) onRequestReasons.push(`${quantityOption?.label ?? "This group size"} is priced individually`);
   if (unitPrice === null && subject && style) onRequestReasons.push(`${subject.name} in ${style.name} is priced individually`);
@@ -115,18 +93,15 @@ export function quote(data: CommissionData, selection: Selection): Quote {
   // a blank one — but the order is clearly flagged as needing confirmation.
   const calculable = unitPrice !== null && !quantityOnRequest;
   const artworkSubtotal = calculable ? unitPrice * selection.quantity : null;
-  const total = artworkSubtotal === null ? null : artworkSubtotal + addonsTotal;
+  const total = artworkSubtotal;
 
   return {
     subject,
     style,
     artworkMode,
     quantity: selection.quantity,
-    artworkCount,
     unitPrice,
     artworkSubtotal,
-    addonLines,
-    addonsTotal,
     total,
     onRequest: onRequestReasons.length > 0,
     onRequestReasons,
@@ -156,15 +131,6 @@ export function buildOrderMessage(data: CommissionData, selection: Selection, q:
 
   if (q.subject?.needsExtras) {
     parts.push(`Extras: ${selection.extras.trim() || "(to discuss)"}`);
-  }
-
-  if (q.addonLines.length) {
-    parts.push("");
-    parts.push("Add-ons:");
-    for (const line of q.addonLines) {
-      const suffix = line.quantity > 1 ? ` x${line.quantity}` : "";
-      parts.push(`- ${line.addon.name}${suffix} — ${formatPrice(line.total, data.currency)}`);
-    }
   }
 
   parts.push("");
@@ -197,7 +163,6 @@ export function selectionToParams(selection: Selection): URLSearchParams {
   if (selection.styleId) params.set("style", selection.styleId);
   if (selection.quantity !== 1) params.set("qty", String(selection.quantity));
   if (selection.artworkModeId !== EMPTY_SELECTION.artworkModeId) params.set("format", selection.artworkModeId);
-  if (selection.addonIds.length) params.set("addons", selection.addonIds.join(","));
   return params;
 }
 
@@ -216,12 +181,6 @@ export function selectionFromParams(data: CommissionData, params: URLSearchParam
 
   const format = params.get("format");
   if (format && data.artworkModes.some((m) => m.id === format)) out.artworkModeId = format;
-
-  const addons = params.get("addons");
-  if (addons) {
-    const ids = addons.split(",").filter((id) => data.addons.some((a) => a.id === id));
-    if (ids.length) out.addonIds = ids;
-  }
 
   return out;
 }
@@ -244,7 +203,6 @@ export function sanitizeSelection(data: CommissionData, selection: Partial<Selec
       : (data.artworkModes[0]?.id ?? EMPTY_SELECTION.artworkModeId),
     // Extras text is meaningless once the subject that asked for it is gone.
     extras: subject?.needsExtras ? String(merged.extras ?? "") : "",
-    addonIds: (merged.addonIds ?? []).filter((id) => data.addons.some((a) => a.id === id)),
     note: String(merged.note ?? ""),
   };
 }

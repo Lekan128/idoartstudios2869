@@ -25,11 +25,11 @@ export default function SubjectStep({ data, selectedId, onSelect }: Props) {
               selected ? "ring-2 ring-pink-500" : "ring-pink-100"
             }`}
           >
-            <div className="relative w-28 shrink-0 self-stretch overflow-hidden bg-pink-50 sm:aspect-[4/3] sm:w-full">
+            <div className="relative w-28 shrink-0 self-stretch overflow-hidden border-pink-100 bg-white sm:aspect-square sm:w-full sm:border-b">
               <img
                 src={subject.image}
                 alt={subject.alt || subject.name}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
               {selected && (

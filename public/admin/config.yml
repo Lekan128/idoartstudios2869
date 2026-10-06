@@ -125,6 +125,13 @@ collections:
               required: false,
             }
           - {
+              label: "Hero Background Image",
+              name: "heroBackgroundImage",
+              widget: "image",
+              required: false,
+              hint: "Photo shown behind the hero section. It is automatically darkened so the text stays readable. Leave empty for the plain pink background.",
+            }
+          - {
               label: "Gallery Section — Eyebrow",
               name: "galleryEyebrow",
               widget: "string",
@@ -189,7 +196,7 @@ collections:
             }
 
   - name: "reaction-video"
-    label: "Homepage Reaction Video"
+    label: "Live Caricature Reaction Video"
     files:
       - label: "Reaction Video"
         name: "reaction-video"
@@ -212,7 +219,7 @@ collections:
             }
 
   - name: "spot-on-caricature"
-    label: "Spot-On Caricature Page"
+    label: "Live Caricature Page (Spot-On Caricature)"
     files:
       - label: "Page Content"
         name: "spot-on-caricature"
@@ -424,26 +431,6 @@ collections:
               - { label: "Label", name: "label", widget: "string" }
               - { label: "Small Print", name: "hint", widget: "string", required: false }
 
-          # --- Add-ons --------------------------------------------------------
-          - label: "OPTIONAL EXTRAS (prints, framing, rush)"
-            name: "addons"
-            widget: "list"
-            summary: "{{fields.name}} — {{fields.price}}"
-            hint: "Offered last, after the customer has chosen a style. Charged per artwork. Leave the list empty to hide this step."
-            fields:
-              - { label: "ID (no spaces, lowercase)", name: "id", widget: "string" }
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Description", name: "description", widget: "string", required: false }
-              - {
-                  label: "Price",
-                  name: "price",
-                  widget: "number",
-                  value_type: "int",
-                  min: 0,
-                  hint: "Numbers only — e.g. 8000.",
-                }
-          - { label: "Note under the extras", name: "addonNote", widget: "string", required: false }
-
           # --- Reassurance ----------------------------------------------------
           - { label: '"How it works" — Title', name: "howItWorksTitle", widget: "string" }
           - label: '"How it works" — Steps'
@@ -502,8 +489,6 @@ collections:
           - { label: "Extras Step — Hint", name: "extrasStepHint", widget: "string", required: false }
           - { label: "Extras Step — Placeholder", name: "extrasPlaceholder", widget: "string", required: false }
           - { label: "Extras Step — Price Notice", name: "extrasPriceNotice", widget: "text" }
-          - { label: "Extras Step (add-ons) — Heading", name: "addonStepTitle", widget: "string" }
-          - { label: "Extras Step (add-ons) — Hint", name: "addonStepHint", widget: "string", required: false }
           - { label: "Order Summary — Title", name: "summaryTitle", widget: "string" }
           - { label: "Order Button Text", name: "orderCtaLabel", widget: "string" }
           - { label: "Order Button — Small Print", name: "orderCtaHint", widget: "string", required: false }

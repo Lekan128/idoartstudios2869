@@ -24,6 +24,7 @@ export interface HomeData {
   subheadline: string;
   heroImage: string;
   heroCaption: string;
+  heroBackgroundImage?: string;
   galleryEyebrow: string;
   galleryTitle: string;
   packagesEyebrow: string;
@@ -129,14 +130,6 @@ export interface CommissionArtworkMode {
   hint: string;
 }
 
-export interface CommissionAddon {
-  id: string;
-  name: string;
-  description: string;
-  /** Charged per artwork, not per person — see artworkCount in lib/commission.ts. */
-  price: number;
-}
-
 export interface CommissionStep {
   title: string;
   body: string;
@@ -169,8 +162,6 @@ export interface CommissionData {
   extrasStepHint: string;
   extrasPlaceholder: string;
   extrasPriceNotice: string;
-  addonStepTitle: string;
-  addonStepHint: string;
 
   summaryTitle: string;
   orderCtaLabel: string;
@@ -185,8 +176,6 @@ export interface CommissionData {
   quantities: CommissionQuantity[];
   quantityOnRequestNotice: string;
   artworkModes: CommissionArtworkMode[];
-  addons: CommissionAddon[];
-  addonNote: string;
 
   howItWorksTitle: string;
   howItWorks: CommissionStep[];

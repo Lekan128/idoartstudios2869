@@ -8,7 +8,6 @@ import StyleStep from "../components/commission/StyleStep";
 import StyleCompare from "../components/commission/StyleCompare";
 import QuantityStep from "../components/commission/QuantityStep";
 import ExtrasStep from "../components/commission/ExtrasStep";
-import AddonStep from "../components/commission/AddonStep";
 import SummaryBar from "../components/commission/SummaryBar";
 import { Assurances, Faq, HowItWorks, PriceTable } from "../components/commission/TrustSections";
 import {
@@ -87,14 +86,6 @@ export default function Commission() {
     update({ styleId: id });
     track("commission_style_selected", { subject: selection.subjectId ?? "", style: id });
     scrollToId("step-quantity");
-  };
-
-  const toggleAddon = (id: string) => {
-    const next = selection.addonIds.includes(id)
-      ? selection.addonIds.filter((a) => a !== id)
-      : [...selection.addonIds, id];
-    update({ addonIds: next });
-    track("commission_addon_toggled", { addon: id, selected: next.includes(id) });
   };
 
   const message = useMemo(
@@ -179,17 +170,6 @@ export default function Commission() {
             </Step>
           )}
 
-          {selection.styleId && (
-            <Step id="step-addons" index={nextNumber()} title={data.addonStepTitle} hint={data.addonStepHint}>
-              <AddonStep
-                data={data}
-                selectedIds={selection.addonIds}
-                artworkCount={quote.artworkCount}
-                onToggle={toggleAddon}
-              />
-            </Step>
-          )}
-
           <HowItWorks data={data} />
           <Assurances data={data} />
           <PriceTable data={data} />
@@ -224,7 +204,6 @@ export default function Commission() {
             subject: selection.subjectId ?? "",
             style: selection.styleId ?? "",
             quantity: selection.quantity,
-            addons: selection.addonIds.join(","),
             total: quote.total ?? 0,
             reference,
           })

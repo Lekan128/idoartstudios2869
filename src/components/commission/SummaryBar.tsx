@@ -72,18 +72,6 @@ export default function SummaryBar({
                     : data.onRequestLabel}
                 </dd>
               </div>
-
-              {quote.addonLines.map(({ addon, quantity, total }) => (
-                <div key={addon.id} className="flex items-start justify-between gap-4">
-                  <dt className="text-neutral-700">
-                    {addon.name}
-                    {quantity > 1 && <span className="font-semibold"> ×{quantity}</span>}
-                  </dt>
-                  <dd className="whitespace-nowrap font-semibold text-neutral-900">
-                    {formatPrice(total, data.currency)}
-                  </dd>
-                </div>
-              ))}
             </dl>
 
             {quote.onRequest && (

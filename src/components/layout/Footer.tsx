@@ -13,7 +13,7 @@ export default function Footer() {
 
       <div className="mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-6 sm:pb-10">
         <div className="grid items-center gap-5 border-t border-pink-100 pt-8 text-center text-sm text-neutral-600 md:grid-cols-3 md:text-left">
-          <img src={site.logo} alt={site.brandName} className="mx-auto h-9 w-auto md:mx-0" />
+          <img src={site.logo} alt={site.brandName} className="mx-auto h-16 w-auto md:mx-0" />
 
           <p className="font-display text-lg font-medium text-neutral-800 md:text-center">{site.footerTagline}</p>
 

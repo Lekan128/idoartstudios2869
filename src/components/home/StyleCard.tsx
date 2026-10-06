@@ -17,11 +17,11 @@ interface Props {
 export default function StyleCard({ subject, from, currency, fromLabel }: Props) {
   return (
     <div className="group flex flex-col items-center overflow-hidden rounded-2xl bg-white text-center shadow-sm ring-1 ring-pink-100 transition-shadow hover:shadow-md">
-      <div className="aspect-[4/3] w-full overflow-hidden bg-pink-50">
+      <div className="aspect-square w-full overflow-hidden border-b border-pink-100 bg-white">
         <img
           src={subject.image}
           alt={subject.alt || subject.name}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
       </div>
