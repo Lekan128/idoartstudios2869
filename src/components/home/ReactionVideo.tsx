@@ -5,6 +5,7 @@ import siteData from "../../data/site.json";
 import type { SiteData } from "../../types";
 import SectionHeading from "./SectionHeading";
 import BookEventLink from "../layout/BookEventLink";
+import { REACTION_VIDEO_PLAY_EVENT } from "./VideoPopup";
 
 const video = reactionVideoData as ReactionVideoData;
 const site = siteData as SiteData;
@@ -15,7 +16,7 @@ export default function ReactionVideo() {
   if (!video.youtubeId) return null;
 
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section id="reaction-video" className="bg-white py-16 sm:py-20">
       {/* A portrait video centred on its own leaves wide empty bands on desktop, so
           from md up the heading sits beside it instead of above it. */}
       <div className="mx-auto grid max-w-4xl items-center gap-10 px-4 sm:px-6 md:grid-cols-[1fr_auto] md:gap-16">
@@ -47,7 +48,11 @@ export default function ReactionVideo() {
           ) : (
             <button
               type="button"
-              onClick={() => setPlaying(true)}
+              onClick={() => {
+                setPlaying(true);
+                // Close the floating mini player, if it's open, so only one video plays.
+                window.dispatchEvent(new Event(REACTION_VIDEO_PLAY_EVENT));
+              }}
               aria-label={`Play video: ${video.title}`}
               className="group absolute inset-0 h-full w-full"
             >

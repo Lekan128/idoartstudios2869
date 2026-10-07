@@ -149,7 +149,24 @@ h3 {
   }
 }
 
+/* Homepage video popup (see components/home/VideoPopup.tsx): rises and fades
+   into its corner once the page has loaded. */
+.video-popup-enter {
+  animation: video-popup-in 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes video-popup-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .video-popup-enter {
+    animation: none;
+  }
+
   .order-bar-enter {
     animation: none;
   }
