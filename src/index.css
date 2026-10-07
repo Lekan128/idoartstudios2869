@@ -43,7 +43,24 @@ h3 {
   }
 }
 
+/* Homepage option cards (see components/home/StyleOptions.tsx): each drawing zooms
+   in and back out once, in turn, when the cards first scroll into view. No fill
+   mode, so once it ends the image is static and the hover zoom works as normal. */
+.card-zoom {
+  animation: card-zoom 1s ease-in-out;
+}
+
+@keyframes card-zoom {
+  50% {
+    scale: 1.05;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .card-zoom {
+    animation: none;
+  }
+
   .marquee {
     overflow-x: auto;
     mask-image: none;
