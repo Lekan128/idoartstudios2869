@@ -1,13 +1,13 @@
 {
+  "heroImage": "/images/uploads/pxl_20260924_172228363.jpg-1-.jpeg",
+  "galleryTitle": "Slide Show Gallery of Caricatures",
   "eyebrow": "LIVE CARICATURE ENTERTAINMENT",
-  "headlinePlain": "Mr.",
-  "headlineAccent": "caricature",
-  "subheadline": "Caricature in minutes.",
-  "heroImage": "/images/uploads/hero/hero-drawing.webp",
+  "packagesTitle": "Commission a caricature",
   "heroCaption": "Meet Mr. Caricature!",
   "heroBackgroundImage": "/images/uploads/hero/hero-background.jpg",
+  "subheadline": "Caricature in minutes.",
+  "headlinePlain": "Mr.",
   "galleryEyebrow": "OUR GALLERY",
-  "galleryTitle": "Slide Show Gallery of Caricatures",
   "packagesEyebrow": "WHAT WE DRAW",
-  "packagesTitle": "Commission a caricature"
+  "headlineAccent": "caricature"
 }
