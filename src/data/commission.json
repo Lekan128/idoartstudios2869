@@ -95,8 +95,8 @@
       "bestFor": "Best for a bold, fun piece with an obvious hand-drawn look.",
       "images": [
         {
-          "image": "/images/uploads/styles/style-individual.png",
-          "alt": "Expressive style caricature with visible line work and bright colour"
+          "image": "/images/uploads/styles/style-expressive.jpg",
+          "alt": "Expressive style caricature of a couple with a rose, bold line work and bright flat colour"
         },
         {
           "image": "/images/uploads/gallery/gallery-1.png",
@@ -113,8 +113,8 @@
       "bestFor": "Best if you want the balance between caricature and realism.",
       "images": [
         {
-          "image": "/images/uploads/styles/style-fullbody.png",
-          "alt": "Classic style caricature with refined proportions and visible line work"
+          "image": "/images/uploads/styles/style-classic.jpg",
+          "alt": "The same couple in the Classic style, line work still visible with softer, more realistic shading"
         },
         {
           "image": "/images/uploads/gallery/gallery-2.png",
@@ -131,8 +131,8 @@
       "bestFor": "Best for a sophisticated, detailed painted piece you'd hang on a wall.",
       "images": [
         {
-          "image": "/images/uploads/styles/style-family.png",
-          "alt": "Realistic style caricature, fully painted with no visible line work"
+          "image": "/images/uploads/styles/style-realistic.jpg",
+          "alt": "Realistic style caricature of a boss relaxing at his desk, fully painted with no visible line work"
         },
         {
           "image": "/images/uploads/gallery/gallery-3.png",

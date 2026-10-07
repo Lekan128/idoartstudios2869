@@ -40,7 +40,8 @@ export default function StyleStep({ data, subjectId, selectedId, comparing, onSe
                   <img
                     src={cover.image}
                     alt={cover.alt || style.name}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    // Portrait artwork in a landscape frame: favour the upper part, where the faces are.
+                    className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
                     loading="lazy"
                   />
                 )}
