@@ -162,7 +162,22 @@ h3 {
   }
 }
 
+/* Event plan photo viewer (see components/event/PlanLightbox.tsx). */
+.lightbox-enter {
+  animation: lightbox-in 250ms ease-out both;
+}
+
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .lightbox-enter {
+    animation: none;
+  }
+
   .video-popup-enter {
     animation: none;
   }

@@ -7,11 +7,13 @@ import BookEventLink from "./BookEventLink";
 const site = siteData as SiteData;
 
 function NavItem({ href, className, onClick, children }: { href: string; className: string; onClick?: () => void; children: React.ReactNode }) {
+  // Links to a section (e.g. /#gallery) stay in the app and scroll there, without
+  // a highlight: they'd otherwise light up alongside the page they sit on.
   if (href.includes("#")) {
     return (
-      <a href={href} className={`${className} text-neutral-700`} onClick={onClick}>
+      <Link to={href} className={`${className} text-neutral-700`} onClick={onClick}>
         {children}
-      </a>
+      </Link>
     );
   }
   return (

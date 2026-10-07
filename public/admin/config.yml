@@ -54,7 +54,7 @@ collections:
               label: "Book an Event — Link",
               name: "bookEventUrl",
               widget: "string",
-              hint: "Where every Book an Event button goes. /book-event/ is the on-site inquiry form (edit it under 'Book an Event Page'). A full URL (e.g. a Google Form) opens in a new tab instead.",
+              hint: "Where every Book an Event button goes. /spot-on-caricature/#plans opens the event page at the plans (edit them under 'Event Plans & Booking Form'). A full URL (e.g. a Google Form) opens in a new tab instead.",
             }
           - {
               label: "WhatsApp Number (with country code, e.g. +234...)",
@@ -306,9 +306,11 @@ collections:
               widget: "select",
               required: false,
               options:
-                - { label: "Expressive", value: "expressive" }
-                - { label: "Classic", value: "classic" }
-                - { label: "Realistic", value: "realistic" }
+                [
+                  { label: "Expressive", value: "expressive" },
+                  { label: "Classic", value: "classic" },
+                  { label: "Realistic", value: "realistic" },
+                ],
               hint: "Customers arrive with this style already chosen, so they see a price straight away and can order in one tap. Leave blank to use the style with a badge.",
             }
           - {
@@ -541,48 +543,74 @@ collections:
           - { label: "Order Note — Placeholder", name: "notePlaceholder", widget: "string", required: false }
           - { label: "Start Over Link Text", name: "startOverLabel", widget: "string" }
 
-  - name: "book-event"
-    label: "Book an Event Page"
+  - name: "event-booking"
+    label: "Event Plans & Booking Form"
     files:
-      - label: "Event Inquiry Form"
-        name: "book-event"
-        file: "src/data/book-event.json"
+      - label: "Plans and Booking Form (Event Caricature page)"
+        name: "event-booking"
+        file: "src/data/event-booking.json"
         fields:
-          - { label: "SEO Title (browser tab / Google title)", name: "seoTitle", widget: "string" }
-          - { label: "SEO Description (Google search snippet)", name: "seoDescription", widget: "text" }
-          - { label: "Eyebrow (small text above the heading)", name: "eyebrow", widget: "string" }
-          - { label: "Page Heading", name: "heading", widget: "string" }
-          - { label: "Intro Line", name: "intro", widget: "text" }
-          - { label: "Part 1 — Heading", name: "eventStepTitle", widget: "string" }
-          - label: "Part 1 — Kinds of Event"
+          - { label: "Plans — Heading", name: "plansTitle", widget: "string" }
+          - { label: "Plans — Text Under the Heading", name: "plansHint", widget: "string", required: false }
+          - { label: "Currency Code", name: "currency", widget: "string", default: "NGN" }
+          - label: "Plans"
+            name: "plans"
+            widget: "list"
+            summary: "{{fields.name}}"
+            hint: "Shown in this order. The ID is used by the booking form — keep it short, lowercase, no spaces, and don't change it once live."
+            fields:
+              - { label: "ID", name: "id", widget: "string", hint: 'e.g. "classic"' }
+              - { label: "Name", name: "name", widget: "string", hint: 'e.g. "Classic Experience"' }
+              - { label: "Badge", name: "badge", widget: "string", required: false, hint: 'e.g. "Most popular". Leave blank for none — use it on one plan at most.' }
+              - { label: "One-line Description", name: "tagline", widget: "string", required: false }
+              - label: "Full Event"
+                name: "fullEvent"
+                widget: "object"
+                fields:
+                  - { label: "Price", name: "price", widget: "number", value_type: "int", min: 0, hint: "Numbers only, no ₦ or commas — e.g. 1000000. Enter 0 to show 'On request'." }
+                  - { label: "Small Print", name: "note", widget: "string", required: false, hint: 'e.g. "Up to 60 T-shirts". Leave blank for none.' }
+              - label: "Hourly"
+                name: "hourly"
+                widget: "object"
+                hint: "The shorter booking, shown on the right of the Full event / Per hour switch in the booking form."
+                fields:
+                  - { label: "Price", name: "price", widget: "number", value_type: "int", min: 0, hint: "Per hour, or the fixed price for the hours below — see 'Priced'." }
+                  - label: "Priced"
+                    name: "unit"
+                    widget: "select"
+                    default: "hour"
+                    options:
+                      - { label: "Per hour (the form shows the price for the minimum hours)", value: "hour" }
+                      - { label: "Fixed price for the hours below", value: "package" }
+                  - { label: "Hours (minimum, or the package length)", name: "hours", widget: "number", value_type: "int", min: 1, default: 2 }
+                  - { label: "Small Print", name: "note", widget: "string", required: false, hint: 'e.g. "Up to 20 T-shirts". Per-hour plans show "Minimum 2 hours" automatically when this is blank.' }
+              - label: "What's Included"
+                name: "features"
+                widget: "list"
+                required: false
+                hint: "Optional short points, shown with a tick. Three or four at most."
+                field: { label: "Point", name: "feature", widget: "string" }
+              - label: "Example Photos"
+                name: "images"
+                widget: "list"
+                required: false
+                summary: "{{fields.alt}}"
+                hint: "Guests with their caricatures at real events. The first shows on the card; they rotate every 4 seconds and open full screen when tapped. Two or three is ideal — mix men and women. Portrait photos work best."
+                fields:
+                  - { label: "Photo", name: "image", widget: "image" }
+                  - { label: "Photo Description (alt text)", name: "alt", widget: "string", required: false }
+          - { label: "Form — Heading (no plan chosen)", name: "formTitle", widget: "string" }
+          - { label: "Form — Heading (plan chosen)", name: "formTitleWithPlan", widget: "string", hint: "{plan} is replaced with the plan's name." }
+          - { label: "Form — Text Under the Heading", name: "formHint", widget: "string", required: false }
+          - { label: "Form — 'Not sure yet' Option", name: "notSureLabel", widget: "string" }
+          - label: "Form — Kinds of Event"
             name: "eventTypes"
             widget: "list"
             field: { label: "Kind of event", name: "eventType", widget: "string" }
-          - label: "Part 1 — Guest Number Options"
-            name: "guestRanges"
-            widget: "list"
-            field: { label: "Range", name: "range", widget: "string" }
-          - { label: "Part 1 — Button Text", name: "checkAvailabilityLabel", widget: "string" }
-          - { label: "Part 2 — Heading", name: "contactStepTitle", widget: "string" }
-          - { label: "Part 2 — Small Print", name: "contactStepHint", widget: "string", required: false }
-          - { label: "Part 2 — Button Text", name: "sendLabel", widget: "string" }
-          - { label: "Part 2 — Text Under the Button", name: "sendHint", widget: "string", required: false }
-          - {
-              label: "After Sending — Heading",
-              name: "sentTitle",
-              widget: "string",
-              hint: "{name} is replaced with the customer's first name.",
-            }
+          - { label: "Form — Button Text", name: "sendLabel", widget: "string" }
+          - { label: "Form — Text Under the Button", name: "sendHint", widget: "string", required: false }
+          - { label: "After Sending — Heading", name: "sentTitle", widget: "string", hint: "{name} is replaced with the customer's first name." }
           - { label: "After Sending — Message", name: "sentBody", widget: "text" }
-          - { label: "Why Book Us — Title", name: "factsTitle", widget: "string" }
-          - label: "Why Book Us — Points"
-            name: "facts"
-            widget: "list"
-            summary: "{{fields.title}}"
-            hint: "What an event planner wants to know before booking. Real numbers help most — e.g. how many guests you draw per hour, how much space you need."
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Body", name: "body", widget: "text" }
           - { label: "What Happens Next — Title", name: "nextStepsTitle", widget: "string" }
           - label: "What Happens Next — Steps"
             name: "nextSteps"
@@ -591,12 +619,8 @@ collections:
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Body", name: "body", widget: "text" }
-          - {
-              label: "WhatsApp Message — Opening Line",
-              name: "whatsappIntro",
-              widget: "text",
-              hint: "The event details the customer entered are added underneath automatically.",
-            }
+          - { label: "Why Book Us — Title", name: "whyTitle", widget: "string", hint: "Heading above the three points edited under 'Live Caricature Page'." }
+          - { label: "WhatsApp Message — Opening Line", name: "whatsappIntro", widget: "text", hint: "The details the customer entered are added underneath automatically." }
 
   - name: "clients"
     label: "Companies We've Worked With"

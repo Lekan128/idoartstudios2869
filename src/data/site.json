@@ -25,10 +25,10 @@
     },
     {
       "label": "Contact / Book",
-      "href": "/book-event/"
+      "href": "/spot-on-caricature/#book"
     }
   ],
-  "bookEventUrl": "/book-event/",
+  "bookEventUrl": "/spot-on-caricature/#plans",
   "bookEventLabel": "Book an Event",
   "whatsappNumber": "+2348091826948",
   "contactEmail": "",

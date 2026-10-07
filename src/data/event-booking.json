@@ -1,0 +1,146 @@
+{
+  "plansTitle": "Choose your experience",
+  "plansHint": "Pick an experience, then tell us about your event. We'll confirm your date on WhatsApp.",
+  "currency": "NGN",
+  "plans": [
+    {
+      "id": "classic",
+      "name": "Classic Experience",
+      "badge": "",
+      "tagline": "Traditional live caricature",
+      "fullEvent": {
+        "price": 1000000,
+        "note": ""
+      },
+      "hourly": {
+        "price": 300000,
+        "unit": "hour",
+        "hours": 2,
+        "note": ""
+      },
+      "features": [],
+      "images": [
+        {
+          "image": "/images/uploads/event-plans/classic.jpg",
+          "alt": "Guest smiling with her hand-drawn caricature at a live event"
+        },
+        {
+          "image": "/images/uploads/event-plans/classic-2.jpg",
+          "alt": "Guest in a suit holding up his live caricature drawing"
+        }
+      ]
+    },
+    {
+      "id": "deluxe",
+      "name": "Deluxe Experience",
+      "badge": "Most popular",
+      "tagline": "Our most popular choice for corporate events",
+      "fullEvent": {
+        "price": 1200000,
+        "note": ""
+      },
+      "hourly": {
+        "price": 400000,
+        "unit": "hour",
+        "hours": 2,
+        "note": ""
+      },
+      "features": [],
+      "images": [
+        {
+          "image": "/images/uploads/event-plans/deluxe-2.jpg",
+          "alt": "Smiling guest at an evening dinner holding his colour caricature card"
+        },
+        {
+          "image": "/images/uploads/event-plans/deluxe.jpg",
+          "alt": "Guest at a beach event holding up her colour caricature card"
+        }
+      ]
+    },
+    {
+      "id": "platinum",
+      "name": "Platinum Experience",
+      "badge": "",
+      "tagline": "The ultimate guest caricature experience",
+      "fullEvent": {
+        "price": 1800000,
+        "note": ""
+      },
+      "hourly": {
+        "price": 500000,
+        "unit": "hour",
+        "hours": 2,
+        "note": ""
+      },
+      "features": [],
+      "images": [
+        {
+          "image": "/images/uploads/event-plans/platinum.jpg",
+          "alt": "Laughing guest in a pink dress holding a mug printed with her caricature"
+        },
+        {
+          "image": "/images/uploads/event-plans/platinum-2.jpg",
+          "alt": "Smiling guest holding a mug printed with his own caricature"
+        }
+      ]
+    },
+    {
+      "id": "platinum-wearable",
+      "name": "Platinum Wearable Experience",
+      "badge": "",
+      "tagline": "Caricature T-shirts your guests wear home",
+      "fullEvent": {
+        "price": 2400000,
+        "note": "Up to 60 T-shirts"
+      },
+      "hourly": {
+        "price": 1200000,
+        "unit": "package",
+        "hours": 2,
+        "note": "Up to 20 T-shirts"
+      },
+      "features": [],
+      "images": [
+        {
+          "image": "/images/uploads/event-plans/platinum-wearable-2.jpg",
+          "alt": "Guest holding a T-shirt printed with his own caricature"
+        },
+        {
+          "image": "/images/uploads/event-plans/platinum-wearable.jpg",
+          "alt": "Guest wearing a T-shirt printed with her own caricature at a live event"
+        }
+      ]
+    }
+  ],
+  "formTitle": "Book your event",
+  "formTitleWithPlan": "Book the {plan}",
+  "formHint": "One short form. We'll reply on WhatsApp with availability.",
+  "notSureLabel": "Not sure yet",
+  "eventTypes": [
+    "Wedding",
+    "Birthday",
+    "Corporate event",
+    "Other"
+  ],
+  "sendLabel": "Send booking request on WhatsApp",
+  "sendHint": "Opens WhatsApp with your details written out. Nothing is booked or paid yet.",
+  "sentTitle": "Thanks, {name} — your request is in",
+  "sentBody": "WhatsApp should have opened with your event details. Press Send there and we'll come back to you with availability.",
+  "nextStepsTitle": "What happens next",
+  "nextSteps": [
+    {
+      "title": "We reply on WhatsApp",
+      "body": "With availability for your date and the details of your experience."
+    },
+    {
+      "title": "You confirm",
+      "body": "We agree the details and secure your date."
+    },
+    {
+      "title": "We draw your guests live",
+      "body": "On the day, we arrive, set up and start drawing."
+    }
+  ],
+  "whyTitle": "Why event planners book us",
+  "whatsappIntro": "Hello I Do Art Studios! I'd like to book live caricature for an event."
+}

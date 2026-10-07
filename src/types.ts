@@ -206,9 +206,9 @@ export interface CommissionData {
 }
 
 /* ---------------------------------------------------------------------------
-   Event inquiry (the /book-event page). A two-part form: the event first
-   (low-commitment, answered in taps), then who to send the quote to. Every
-   inquiry is stored by Netlify Forms and handed over to WhatsApp.
+   Event plans and booking (on the Event Caricature page). Visitors pick an
+   experience, then fill one short form; every request is stored by Netlify
+   Forms and handed over to WhatsApp.
 --------------------------------------------------------------------------- */
 
 export interface EventFact {
@@ -216,30 +216,60 @@ export interface EventFact {
   body: string;
 }
 
-export interface BookEventData {
-  seoTitle: string;
-  seoDescription: string;
-  eyebrow: string;
-  heading: string;
-  intro: string;
+/** The full-event price. 0 reads "on request". */
+export interface EventPlanFullEvent {
+  price: number;
+  /** Small print, e.g. "Up to 60 T-shirts". */
+  note: string;
+}
 
-  eventStepTitle: string;
+/**
+ * The shorter booking. "hour": `price` is per hour and a booking is at least
+ * `hours` long. "package": `price` is the fixed price for `hours`.
+ */
+export interface EventPlanHourly {
+  price: number;
+  unit: "hour" | "package";
+  hours: number;
+  note: string;
+}
+
+export interface EventPlan {
+  /** Stable key used in the form and analytics. */
+  id: string;
+  name: string;
+  /** Optional ribbon, e.g. "Most popular". Empty string hides it. */
+  badge: string;
+  tagline: string;
+  fullEvent: EventPlanFullEvent;
+  hourly: EventPlanHourly;
+  features: string[];
+  /** Example photos from real events. The first shows on the card; all of them
+   *  rotate on the card and open in the full-screen viewer. Optional. */
+  images: { image: string; alt: string }[];
+}
+
+export interface EventBookingData {
+  plansTitle: string;
+  plansHint: string;
+  currency: string;
+  plans: EventPlan[];
+
+  formTitle: string;
+  /** Used once a plan is chosen; {plan} is replaced with its name. */
+  formTitleWithPlan: string;
+  formHint: string;
+  notSureLabel: string;
   eventTypes: string[];
-  guestRanges: string[];
-  checkAvailabilityLabel: string;
-
-  contactStepTitle: string;
-  contactStepHint: string;
   sendLabel: string;
   sendHint: string;
 
   sentTitle: string;
   sentBody: string;
 
-  factsTitle: string;
-  facts: EventFact[];
   nextStepsTitle: string;
   nextSteps: EventFact[];
+  whyTitle: string;
 
   whatsappIntro: string;
 }

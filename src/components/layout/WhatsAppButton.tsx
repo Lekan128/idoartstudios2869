@@ -10,9 +10,9 @@ export default function WhatsAppButton() {
 
   if (!site.whatsappNumber) return null;
   // Both ordering pages end in WhatsApp already: /styles has its sticky order bar in
-  // this corner, and on /book-event the button would sit over the inquiry form.
+  // this corner, and on the event page the button would sit over the booking form.
   const path = pathname.replace(/\/$/, "");
-  if (path === "/styles" || path === "/book-event") return null;
+  if (path === "/styles" || path === "/spot-on-caricature") return null;
   const digits = site.whatsappNumber.replace(/[^\d]/g, "");
 
   return (
