@@ -7,7 +7,7 @@ interface Props {
   badge: string;
   /** Delay before this card starts rotating, so neighbouring cards don't all change at once. */
   stagger: number;
-  /** Held still while the full-screen viewer is open. */
+  /** Held still while the details view is open. */
   paused: boolean;
   onOpen: (index: number) => void;
 }
@@ -25,7 +25,7 @@ function prefersReducedMotion(): boolean {
  * The example photos on a plan card. They slide forward every few seconds —
  * always forward: a copy of the first photo sits at the end, and once it has
  * slid in the row quietly resets to the real first one. Tapping opens the
- * full-screen viewer at the photo on show. Rotation holds while a mouse is over
+ * details view at the photo on show. Rotation holds while a mouse is over
  * the card, while it's off screen, in a background tab, and never runs with
  * reduced motion; the dots still let anyone step through by hand.
  */

@@ -7,7 +7,8 @@
       "id": "classic",
       "name": "Classic Experience",
       "badge": "",
-      "tagline": "Traditional live caricature",
+      "tagline": "Best for private events",
+      "description": "Traditional live caricature, drawn by hand in pen and ink.",
       "fullEvent": {
         "price": 1000000,
         "note": ""
@@ -18,7 +19,13 @@
         "hours": 2,
         "note": ""
       },
-      "features": [],
+      "capacity": "Approx. 20–30 guests / 2 hours",
+      "includesIntro": "",
+      "features": [
+        "Traditional pen & ink caricatures",
+        "Hand colouring",
+        "Protective presentation sleeves"
+      ],
       "images": [
         {
           "image": "/images/uploads/event-plans/classic.jpg",
@@ -35,6 +42,7 @@
       "name": "Deluxe Experience",
       "badge": "Most popular",
       "tagline": "Our most popular choice for corporate events",
+      "description": "Live digital caricatures with big-screen entertainment, instant prints and branded keepsakes.",
       "fullEvent": {
         "price": 1200000,
         "note": ""
@@ -45,7 +53,17 @@
         "hours": 2,
         "note": ""
       },
-      "features": [],
+      "capacity": "Approx. 24–26 guests / 2 hours",
+      "includesIntro": "",
+      "features": [
+        "Live digital caricature",
+        "Large display screen",
+        "Full-colour logo on artwork",
+        "4×6 colour prints",
+        "Table-stand frames",
+        "Digital copies within 24 hours",
+        "Digital brand usage rights"
+      ],
       "images": [
         {
           "image": "/images/uploads/event-plans/deluxe-2.jpg",
@@ -62,6 +80,7 @@
       "name": "Platinum Experience",
       "badge": "",
       "tagline": "The ultimate guest caricature experience",
+      "description": "A premium live caricature experience designed for corporate events and brand activations.",
       "fullEvent": {
         "price": 1800000,
         "note": ""
@@ -72,7 +91,17 @@
         "hours": 2,
         "note": ""
       },
-      "features": [],
+      "capacity": "Approx. 24–26 guests / 2 hours",
+      "includesIntro": "",
+      "features": [
+        "Live digital caricature",
+        "Large display screen",
+        "Interactive entertainment",
+        "Full-colour logo on artwork",
+        "Live custom mug printing",
+        "Digital copies within 24 hours",
+        "Digital brand usage rights"
+      ],
       "images": [
         {
           "image": "/images/uploads/event-plans/platinum.jpg",
@@ -89,6 +118,7 @@
       "name": "Platinum Wearable Experience",
       "badge": "",
       "tagline": "Caricature T-shirts your guests wear home",
+      "description": "Everything in the Platinum Experience, with every caricature printed live on a premium T-shirt your guests wear home.",
       "fullEvent": {
         "price": 2400000,
         "note": "Up to 60 T-shirts"
@@ -99,7 +129,14 @@
         "hours": 2,
         "note": "Up to 20 T-shirts"
       },
-      "features": [],
+      "capacity": "",
+      "includesIntro": "Everything in Platinum, plus:",
+      "features": [
+        "Live caricature printing on premium white T-shirts",
+        "Dedicated T-shirt production station",
+        "Production staff",
+        "Event-ready shirt finishing"
+      ],
       "images": [
         {
           "image": "/images/uploads/event-plans/platinum-wearable-2.jpg",

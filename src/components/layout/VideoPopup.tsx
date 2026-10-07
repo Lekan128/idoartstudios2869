@@ -192,8 +192,9 @@ export default function VideoPopup() {
       aria-label={`Video: ${video.title}`}
       inert={makingWay}
       className={`fixed right-4 z-40 flex justify-end ${
-        // Commission Artwork has its order bar along the bottom; sit clear above it.
-        path === "/styles" ? "bottom-32 sm:bottom-28" : "bottom-24"
+        // Sit just above the WhatsApp button; Commission Artwork has its order bar
+        // along the bottom instead, and the event page has neither, so it takes the corner.
+        path === "/styles" ? "bottom-32 sm:bottom-28" : path === "/spot-on-caricature" ? "bottom-5" : "bottom-24"
       } transition duration-300 ease-out motion-reduce:transition-none sm:right-5 ${
         makingWay ? "pointer-events-none translate-y-4 opacity-0" : ""
       }`}

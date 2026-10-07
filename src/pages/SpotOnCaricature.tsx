@@ -5,7 +5,7 @@ import siteData from "../data/site.json";
 import ReactionVideo from "../components/home/ReactionVideo";
 import PlanCard from "../components/event/PlanCard";
 import EventInquiryForm from "../components/event/EventInquiryForm";
-import PlanLightbox from "../components/event/PlanLightbox";
+import PlanDetails from "../components/event/PlanDetails";
 import type { EventBookingData, ServicePageData, SiteData } from "../types";
 import { track } from "../lib/analytics";
 import { scrollToId } from "../lib/scroll";
@@ -21,7 +21,7 @@ const site = siteData as SiteData;
  */
 export default function SpotOnCaricature() {
   const [plan, setPlan] = useState("");
-  // The plan whose example photos are open full screen, and which photo.
+  // The plan whose details are open, and which photo to show first.
   const [viewing, setViewing] = useState<{ planId: string; start: number } | null>(null);
   const viewingPlan = viewing ? booking.plans.find((p) => p.id === viewing.planId) : undefined;
 
@@ -62,9 +62,9 @@ export default function SpotOnCaricature() {
               stagger={i * 1000}
               photosPaused={viewing !== null}
               onChoose={() => choosePlan(p.id)}
-              onOpenPhotos={(start) => {
+              onOpenDetails={(start) => {
                 setViewing({ planId: p.id, start });
-                track("event_plan_photos_opened", { plan: p.id });
+                track("event_plan_details_opened", { plan: p.id });
               }}
             />
           ))}
@@ -110,14 +110,14 @@ export default function SpotOnCaricature() {
       <ReactionVideo />
 
       {viewingPlan && viewing && (
-        <PlanLightbox
+        <PlanDetails
           data={booking}
           plan={viewingPlan}
           start={viewing.start}
           onClose={() => setViewing(null)}
           onChoose={() => {
             setViewing(null);
-            // After the viewer has handed focus back and unlocked the page.
+            // After the details view has handed focus back and unlocked the page.
             requestAnimationFrame(() => choosePlan(viewingPlan.id));
           }}
         />

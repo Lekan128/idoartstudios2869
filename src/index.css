@@ -162,7 +162,7 @@ h3 {
   }
 }
 
-/* Event plan photo viewer (see components/event/PlanLightbox.tsx). */
+/* Event plan details view (see components/event/PlanDetails.tsx). */
 .lightbox-enter {
   animation: lightbox-in 250ms ease-out both;
 }

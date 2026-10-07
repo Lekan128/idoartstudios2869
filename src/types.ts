@@ -241,11 +241,18 @@ export interface EventPlan {
   /** Optional ribbon, e.g. "Most popular". Empty string hides it. */
   badge: string;
   tagline: string;
+  /** One or two sentences, shown at the top of the plan's details view. */
+  description: string;
   fullEvent: EventPlanFullEvent;
   hourly: EventPlanHourly;
+  /** e.g. "Approx. 20–30 guests / 2 hours". Empty hides it. */
+  capacity: string;
+  /** Optional lead-in above the list, e.g. "Everything in Platinum, plus:". */
+  includesIntro: string;
+  /** What's included, most important first: the card previews the first three. */
   features: string[];
   /** Example photos from real events. The first shows on the card; all of them
-   *  rotate on the card and open in the full-screen viewer. Optional. */
+   *  rotate on the card and open in the plan's details view. Optional. */
   images: { image: string; alt: string }[];
 }
 

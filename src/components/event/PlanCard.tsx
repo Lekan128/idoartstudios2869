@@ -1,6 +1,10 @@
 import type { EventBookingData, EventPlan } from "../../types";
 import { cardRates, formatRate, shortPlanName } from "../../lib/event";
 import PlanPhotos from "./PlanPhotos";
+import PeopleIcon from "./PeopleIcon";
+
+/** How many inclusions the card lists before "See all". */
+const PREVIEW = 3;
 
 interface Props {
   data: EventBookingData;
@@ -8,20 +12,25 @@ interface Props {
   selected: boolean;
   /** Delay before this card's photos start rotating, so cards don't all change at once. */
   stagger: number;
-  /** Holds the photos still, e.g. while the full-screen viewer is open. */
+  /** Holds the photos still, e.g. while the details view is open. */
   photosPaused: boolean;
   onChoose: () => void;
-  onOpenPhotos: (index: number) => void;
+  /** Opens the plan's details view, on the given photo. */
+  onOpenDetails: (photo: number) => void;
 }
 
 /**
- * One event experience: example photos from real events, the name, one line, and
- * its rates (full event, per hour…) as a short two-line list. A compact row on
- * phones so all four plans stay a short scroll; a full card from sm up. The
- * choose button is outlined until picked, so at most one filled button ever
- * shows across the row.
+ * One event experience: example photos from real events, the name, one line,
+ * its rates (full event, per hour…), how many guests it serves and a taste of
+ * what's included — enough to compare at a glance. The full description and
+ * list are one tap away in the details view. A compact row on phones (rates,
+ * capacity and the details link only) so all four plans stay a short scroll; a
+ * full card from sm up. The choose button is outlined until picked, so at most
+ * one filled button ever shows across the row.
  */
-export default function PlanCard({ data, plan, selected, stagger, photosPaused, onChoose, onOpenPhotos }: Props) {
+export default function PlanCard({ data, plan, selected, stagger, photosPaused, onChoose, onOpenDetails }: Props) {
+  const features = plan.features ?? [];
+  const hasDetails = Boolean(plan.description || features.length);
   return (
     <article
       className={`relative flex overflow-hidden rounded-2xl bg-white shadow-sm ring-1 transition-shadow hover:shadow-md sm:flex-col ${
@@ -35,7 +44,7 @@ export default function PlanCard({ data, plan, selected, stagger, photosPaused, 
           badge={plan.badge}
           stagger={stagger}
           paused={photosPaused}
-          onOpen={onOpenPhotos}
+          onOpen={onOpenDetails}
         />
       ) : (
         <div aria-hidden="true" className="w-2 shrink-0 bg-gradient-to-b from-pink-500 to-pink-300 sm:h-2 sm:w-full sm:bg-gradient-to-r" />
@@ -68,17 +77,38 @@ export default function PlanCard({ data, plan, selected, stagger, photosPaused, 
           </dl>
         )}
 
-        {plan.features?.length > 0 && (
-          <ul className="mt-4 space-y-2 text-sm text-neutral-700">
-            {plan.features.map((feature, i) => (
-              <li key={i} className="flex gap-2">
-                <span aria-hidden="true" className="font-bold text-pink-600">
-                  ✓
-                </span>
-                {feature}
-              </li>
-            ))}
-          </ul>
+        {plan.capacity && (
+          <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-neutral-700">
+            <PeopleIcon size={14} className="shrink-0 text-pink-600" />
+            {plan.capacity}
+          </p>
+        )}
+
+        {features.length > 0 && (
+          <div className="mt-4 hidden sm:block">
+            {plan.includesIntro && <p className="text-xs font-semibold text-neutral-800">{plan.includesIntro}</p>}
+            <ul className="mt-1.5 space-y-1.5 text-sm text-neutral-700">
+              {features.slice(0, PREVIEW).map((feature, i) => (
+                <li key={i} className="flex gap-2">
+                  <span aria-hidden="true" className="font-bold text-pink-600">
+                    ✓
+                  </span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {hasDetails && (
+          <button
+            type="button"
+            onClick={() => onOpenDetails(0)}
+            className="mt-3 inline-flex items-center gap-1 self-start text-sm font-bold text-pink-700 underline-offset-4 hover:underline"
+          >
+            {features.length > PREVIEW ? `See all ${features.length} inclusions` : "See details"}
+            <span aria-hidden="true">→</span>
+          </button>
         )}
 
         {/* Pushes the button to the foot of the card, so buttons line up across the row. */}

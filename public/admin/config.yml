@@ -562,7 +562,8 @@ collections:
               - { label: "ID", name: "id", widget: "string", hint: 'e.g. "classic"' }
               - { label: "Name", name: "name", widget: "string", hint: 'e.g. "Classic Experience"' }
               - { label: "Badge", name: "badge", widget: "string", required: false, hint: 'e.g. "Most popular". Leave blank for none — use it on one plan at most.' }
-              - { label: "One-line Description", name: "tagline", widget: "string", required: false }
+              - { label: "One-line Description", name: "tagline", widget: "string", required: false, hint: "Shown on the card under the name." }
+              - { label: "Description", name: "description", widget: "text", required: false, hint: "One or two sentences at the top of the plan's details (opened from 'See all inclusions' or a photo)." }
               - label: "Full Event"
                 name: "fullEvent"
                 widget: "object"
@@ -584,11 +585,13 @@ collections:
                       - { label: "Fixed price for the hours below", value: "package" }
                   - { label: "Hours (minimum, or the package length)", name: "hours", widget: "number", value_type: "int", min: 1, default: 2 }
                   - { label: "Small Print", name: "note", widget: "string", required: false, hint: 'e.g. "Up to 20 T-shirts". Per-hour plans show "Minimum 2 hours" automatically when this is blank.' }
+              - { label: "Guests Served", name: "capacity", widget: "string", required: false, hint: 'e.g. "Approx. 20–30 guests / 2 hours". Shown on the card and in the details.' }
+              - { label: "What's Included — Lead-in", name: "includesIntro", widget: "string", required: false, hint: 'Optional line above the list, e.g. "Everything in Platinum, plus:"' }
               - label: "What's Included"
                 name: "features"
                 widget: "list"
                 required: false
-                hint: "Optional short points, shown with a tick. Three or four at most."
+                hint: "Short points, most important first — the card shows the first three, the details show them all."
                 field: { label: "Point", name: "feature", widget: "string" }
               - label: "Example Photos"
                 name: "images"
