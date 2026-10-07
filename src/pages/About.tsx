@@ -7,6 +7,16 @@ import BookEventLink from "../components/layout/BookEventLink";
 const about = aboutData as AboutData;
 const site = siteData as SiteData;
 
+/**
+ * Highlights are written as "Short Heading  Body text…" (a double space after
+ * the heading). Pull that heading out so it can be set in bold; anything else
+ * is shown as one paragraph.
+ */
+function splitHeading(text: string): { heading: string; body: string } {
+  const match = text.match(/^(.{3,60}?)\s{2,}([\s\S]+)$/);
+  return match ? { heading: match[1].trim(), body: match[2].replace(/\s{2,}/g, " ").trim() } : { heading: "", body: text };
+}
+
 export default function About() {
   // Client-side title update for in-app navigation. The crawler-facing
   // <title>/meta for this route are baked into the static HTML at build
@@ -29,13 +39,32 @@ export default function About() {
           ))}
         </div>
 
-        <ul className="mt-8 grid gap-3 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
-          {about.highlights.map((h, i) => (
-            <li key={i} className="rounded-xl bg-pink-50 p-4 text-sm font-semibold text-neutral-800">
-              {h}
-            </li>
-          ))}
-        </ul>
+        {/* The highlights are useful to search engines but too long to show by
+            default, so they sit in a closed toggle: still part of the page (Google
+            indexes content in expandable sections in full), open to anyone who
+            wants it. Text hidden from people altogether would count as hidden
+            text under Google's spam policies. */}
+        {about.highlights?.length > 0 && (
+          <details className="group mt-8 max-w-2xl rounded-2xl bg-pink-50/70 ring-1 ring-pink-100">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-5 py-4 text-sm font-bold text-neutral-800 hover:bg-pink-50 [&::-webkit-details-marker]:hidden">
+              {about.highlightsTitle || `More about ${site.brandName}`}
+              <span aria-hidden="true" className="text-lg leading-none text-pink-600 transition-transform group-open:rotate-45">
+                +
+              </span>
+            </summary>
+            <div className="space-y-4 px-5 pb-5 text-sm leading-relaxed text-neutral-700">
+              {about.highlights.map((h, i) => {
+                const { heading, body } = splitHeading(h);
+                return (
+                  <p key={i}>
+                    {heading && <strong className="block text-neutral-900">{heading}</strong>}
+                    {body}
+                  </p>
+                );
+              })}
+            </div>
+          </details>
+        )}
 
         <BookEventLink
           placement="about"

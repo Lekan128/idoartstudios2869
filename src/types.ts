@@ -45,6 +45,8 @@ export interface AboutData {
   intro: string;
   bodyParagraphs: string[];
   highlights: string[];
+  /** Label of the toggle the highlights sit in. Defaults to "More about {brand}". */
+  highlightsTitle?: string;
   artistImage: string;
 }
 

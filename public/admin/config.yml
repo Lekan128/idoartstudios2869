@@ -193,10 +193,17 @@ collections:
             name: "bodyParagraphs"
             widget: "list"
             field: { label: "Paragraph", name: "paragraph", widget: "text" }
-          - label: "Highlight Badges"
+          - {
+              label: "More About Us — Toggle Label",
+              name: "highlightsTitle",
+              widget: "string",
+              required: false,
+              hint: 'Defaults to "More about I Do Art Studios".',
+            }
+          - label: "More About Us (inside a closed toggle)"
             name: "highlights"
             widget: "list"
-            field: { label: "Highlight", name: "highlight", widget: "string" }
+            field: { label: "Paragraph", name: "highlight", widget: "text", hint: "Start with a short heading followed by two spaces to show it in bold, e.g. 'International Recognition  Owolabi is…'" }
           - {
               label: "Artist Image",
               name: "artistImage",
