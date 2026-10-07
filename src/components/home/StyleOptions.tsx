@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import homeData from "../../data/home.json";
 import commissionData from "../../data/commission.json";
 import type { CommissionData, HomeData } from "../../types";
-import { lowestPriceForSubject } from "../../lib/commission";
 import SectionHeading from "./SectionHeading";
 import StyleCard from "./StyleCard";
 
@@ -16,13 +15,7 @@ export default function StyleOptions() {
 
       <div className="mx-auto mt-10 grid max-w-6xl gap-5 px-4 sm:px-6 md:grid-cols-3 lg:gap-6">
         {commission.subjects.map((subject) => (
-          <StyleCard
-            key={subject.id}
-            subject={subject}
-            from={lowestPriceForSubject(commission, subject.id)}
-            currency={commission.currency}
-            fromLabel={commission.fromLabel}
-          />
+          <StyleCard key={subject.id} subject={subject} />
         ))}
       </div>
 

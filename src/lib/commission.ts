@@ -1,5 +1,6 @@
 import type {
   CommissionArtworkMode,
+  CommissionChoice,
   CommissionData,
   CommissionStyle,
   CommissionSubject,
@@ -8,6 +9,7 @@ import type {
 /** Everything the visitor has chosen. `null` means "not chosen yet". */
 export interface Selection {
   subjectId: string | null;
+  exaggerationId: string | null;
   styleId: string | null;
   quantity: number;
   artworkModeId: string;
@@ -17,6 +19,7 @@ export interface Selection {
 
 export const EMPTY_SELECTION: Selection = {
   subjectId: null,
+  exaggerationId: null,
   styleId: null,
   quantity: 1,
   artworkModeId: "together",
@@ -44,12 +47,6 @@ export function priceFor(data: CommissionData, subjectId: string | null, styleId
   return row && row.price > 0 ? row.price : null;
 }
 
-/** Cheapest priced cell for a subject — powers the "from ₦X" labels on the step 1 cards. */
-export function lowestPriceForSubject(data: CommissionData, subjectId: string): number | null {
-  const prices = data.pricing.filter((p) => p.subject === subjectId && p.price > 0).map((p) => p.price);
-  return prices.length ? Math.min(...prices) : null;
-}
-
 /** Cheapest priced cell overall — used for the page's opening price anchor and SEO. */
 export function lowestPriceOverall(data: CommissionData): number | null {
   const prices = data.pricing.filter((p) => p.price > 0).map((p) => p.price);
@@ -58,6 +55,7 @@ export function lowestPriceOverall(data: CommissionData): number | null {
 
 export interface Quote {
   subject: CommissionSubject | null;
+  exaggeration: CommissionChoice | null;
   style: CommissionStyle | null;
   artworkMode: CommissionArtworkMode | null;
   quantity: number;
@@ -75,6 +73,7 @@ export interface Quote {
 
 export function quote(data: CommissionData, selection: Selection): Quote {
   const subject = data.subjects.find((s) => s.id === selection.subjectId) ?? null;
+  const exaggeration = data.exaggerations.find((e) => e.id === selection.exaggerationId) ?? null;
   const style = data.styles.find((s) => s.id === selection.styleId) ?? null;
   const artworkMode = data.artworkModes.find((m) => m.id === selection.artworkModeId) ?? data.artworkModes[0] ?? null;
 
@@ -97,6 +96,7 @@ export function quote(data: CommissionData, selection: Selection): Quote {
 
   return {
     subject,
+    exaggeration,
     style,
     artworkMode,
     quantity: selection.quantity,
@@ -105,7 +105,7 @@ export function quote(data: CommissionData, selection: Selection): Quote {
     total,
     onRequest: onRequestReasons.length > 0,
     onRequestReasons,
-    isComplete: Boolean(subject && style),
+    isComplete: Boolean(subject && exaggeration && style),
   };
 }
 
@@ -125,6 +125,7 @@ export function buildOrderMessage(data: CommissionData, selection: Selection, q:
   const parts: string[] = [data.whatsappIntro, ""];
 
   if (q.subject) parts.push(`Type: ${q.subject.name}`);
+  if (q.exaggeration) parts.push(`Exaggeration: ${q.exaggeration.name}`);
   if (q.style) parts.push(`Style: ${q.style.name}`);
   parts.push(`People: ${q.quantity}`);
   if (q.quantity > 1 && q.artworkMode) parts.push(`Format: ${q.artworkMode.label}`);
@@ -160,6 +161,7 @@ export function whatsappLink(number: string, message: string): string {
 export function selectionToParams(selection: Selection): URLSearchParams {
   const params = new URLSearchParams();
   if (selection.subjectId) params.set("type", selection.subjectId);
+  if (selection.exaggerationId) params.set("exaggeration", selection.exaggerationId);
   if (selection.styleId) params.set("style", selection.styleId);
   if (selection.quantity !== 1) params.set("qty", String(selection.quantity));
   if (selection.artworkModeId !== EMPTY_SELECTION.artworkModeId) params.set("format", selection.artworkModeId);
@@ -172,6 +174,9 @@ export function selectionFromParams(data: CommissionData, params: URLSearchParam
 
   const type = params.get("type");
   if (type && data.subjects.some((s) => s.id === type)) out.subjectId = type;
+
+  const exaggeration = params.get("exaggeration");
+  if (exaggeration && data.exaggerations.some((e) => e.id === exaggeration)) out.exaggerationId = exaggeration;
 
   const style = params.get("style");
   if (style && data.styles.some((s) => s.id === style)) out.styleId = style;
@@ -196,6 +201,7 @@ export function sanitizeSelection(data: CommissionData, selection: Partial<Selec
 
   return {
     subjectId: subject?.id ?? null,
+    exaggerationId: data.exaggerations.some((e) => e.id === merged.exaggerationId) ? merged.exaggerationId : null,
     styleId: data.styles.some((s) => s.id === merged.styleId) ? merged.styleId : null,
     quantity: data.quantities.some((q) => q.value === merged.quantity) ? merged.quantity : 1,
     artworkModeId: data.artworkModes.some((m) => m.id === merged.artworkModeId)

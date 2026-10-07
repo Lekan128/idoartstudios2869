@@ -3,7 +3,7 @@ import commissionData from "../data/commission.json";
 import siteData from "../data/site.json";
 import type { CommissionData, SiteData } from "../types";
 import Step from "../components/commission/Step";
-import SubjectStep from "../components/commission/SubjectStep";
+import ChoiceStep from "../components/commission/ChoiceStep";
 import StyleStep from "../components/commission/StyleStep";
 import StyleCompare from "../components/commission/StyleCompare";
 import QuantityStep from "../components/commission/QuantityStep";
@@ -55,6 +55,14 @@ export default function Commission() {
     document.title = data.seoTitle;
   }, []);
 
+  // Arriving from a homepage card (?type= and nothing else): the option is already
+  // chosen, so jump straight to the next step instead of leaving them at the top.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("type") && !params.get("exaggeration") && selection.subjectId) scrollToId("step-exaggeration");
+    // Only on arrival — later selections scroll themselves.
+  }, []);
+
   const quote = useMemo(() => buildQuote(data, selection), [selection]);
 
   // Keep the URL in step with the selection so an order can be shared or bookmarked.
@@ -79,12 +87,22 @@ export default function Commission() {
     const subject = data.subjects.find((s) => s.id === id);
     update({ subjectId: id });
     track("commission_subject_selected", { subject: id });
-    if (subject) scrollToId("step-style");
+    if (subject) scrollToId("step-exaggeration");
+  };
+
+  const chooseExaggeration = (id: string) => {
+    update({ exaggerationId: id });
+    track("commission_exaggeration_selected", { subject: selection.subjectId ?? "", exaggeration: id });
+    scrollToId("step-style");
   };
 
   const chooseStyle = (id: string) => {
     update({ styleId: id });
-    track("commission_style_selected", { subject: selection.subjectId ?? "", style: id });
+    track("commission_style_selected", {
+      subject: selection.subjectId ?? "",
+      exaggeration: selection.exaggerationId ?? "",
+      style: id,
+    });
     scrollToId("step-quantity");
   };
 
@@ -119,10 +137,26 @@ export default function Commission() {
             hint={data.subjectStepHint}
             answer={subject?.name}
           >
-            <SubjectStep data={data} selectedId={selection.subjectId} onSelect={chooseSubject} />
+            <ChoiceStep options={data.subjects} selectedId={selection.subjectId} onSelect={chooseSubject} />
           </Step>
 
           {selection.subjectId && (
+            <Step
+              id="step-exaggeration"
+              index={nextNumber()}
+              title={data.exaggerationStepTitle}
+              hint={data.exaggerationStepHint}
+              answer={quote.exaggeration?.name}
+            >
+              <ChoiceStep
+                options={data.exaggerations}
+                selectedId={selection.exaggerationId}
+                onSelect={chooseExaggeration}
+              />
+            </Step>
+          )}
+
+          {selection.subjectId && selection.exaggerationId && (
             <Step
               id="step-style"
               index={nextNumber()}
@@ -202,6 +236,7 @@ export default function Commission() {
         onOrder={() =>
           track("commission_order_sent", {
             subject: selection.subjectId ?? "",
+            exaggeration: selection.exaggerationId ?? "",
             style: selection.styleId ?? "",
             quantity: selection.quantity,
             total: quote.total ?? 0,

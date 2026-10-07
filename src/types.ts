@@ -80,20 +80,26 @@ export interface ClientsData {
 /* ---------------------------------------------------------------------------
    Commissioned caricature ordering (the /styles page).
 
-   The visitor builds one artwork: a subject (what we draw) x a style (how we
-   draw it) x how many people, plus optional add-ons. Price comes from the
+   The visitor builds one artwork: a subject (what we draw), how much to
+   exaggerate, a style (how we draw it) and how many people, plus optional
+   add-ons. Exaggeration is a preference only; it never changes the price. Price comes from the
    `pricing` matrix rather than living on either half of the pair, because a
    full-body Realistic piece is not the same job as a Realistic portrait.
 --------------------------------------------------------------------------- */
 
-export interface CommissionSubject {
-  /** Stable key referenced by CommissionPrice.subject and the ?type= deep link. */
+/** A picture-card option with no price of its own. */
+export interface CommissionChoice {
   id: string;
   name: string;
   tagline: string;
   description: string;
   image: string;
   alt: string;
+}
+
+export interface CommissionSubject extends CommissionChoice {
+  /** Stable key referenced by CommissionPrice.subject and the ?type= deep link. */
+  id: string;
   /** True for the option that asks the visitor to describe extras (car, pet, house…). */
   needsExtras: boolean;
 }
@@ -149,10 +155,11 @@ export interface CommissionData {
   priceAnchor: string;
   currency: string;
   onRequestLabel: string;
-  fromLabel: string;
 
   subjectStepTitle: string;
   subjectStepHint: string;
+  exaggerationStepTitle: string;
+  exaggerationStepHint: string;
   styleStepTitle: string;
   styleStepHint: string;
   styleCompareLabel: string;
@@ -171,6 +178,8 @@ export interface CommissionData {
   startOverLabel: string;
 
   subjects: CommissionSubject[];
+  /** Referenced by the ?exaggeration= deep link. */
+  exaggerations: CommissionChoice[];
   styles: CommissionStyle[];
   pricing: CommissionPrice[];
   quantities: CommissionQuantity[];

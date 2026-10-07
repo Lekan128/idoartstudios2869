@@ -334,7 +334,26 @@ collections:
                 }
 
           # --- Step 2 ---------------------------------------------------------
-          - label: "STEP 2 — Artwork styles"
+          - label: "STEP 2 — Exaggeration"
+            name: "exaggerations"
+            widget: "list"
+            summary: "{{fields.name}}"
+            hint: "How far the features are pushed. This never changes the price — prices come from the style chosen in the next step. The ID is used in links, so avoid changing it."
+            fields:
+              - {
+                  label: "ID (no spaces, lowercase)",
+                  name: "id",
+                  widget: "string",
+                  hint: 'e.g. "exaggerated".',
+                }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Short Tagline", name: "tagline", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Example Image", name: "image", widget: "image" }
+              - { label: "Alt Text (describe the image)", name: "alt", widget: "string", required: false }
+
+          # --- Step 3 ---------------------------------------------------------
+          - label: "STEP 3 — Artwork styles"
             name: "styles"
             widget: "list"
             summary: "{{fields.name}}"
@@ -401,8 +420,8 @@ collections:
                   hint: "Numbers only, no ₦ or commas — e.g. 50000. Enter 0 for 'Price on request'.",
                 }
 
-          # --- Step 3 ---------------------------------------------------------
-          - label: "STEP 3 — Number of people"
+          # --- Step 4 ---------------------------------------------------------
+          - label: "STEP 4 — Number of people"
             name: "quantities"
             widget: "list"
             summary: "{{fields.label}}"
@@ -477,14 +496,15 @@ collections:
               widget: "string",
               default: "Price on request",
             }
-          - { label: "Label for 'from'", name: "fromLabel", widget: "string", default: "from" }
           - { label: "Step 1 — Heading", name: "subjectStepTitle", widget: "string" }
           - { label: "Step 1 — Hint", name: "subjectStepHint", widget: "string", required: false }
-          - { label: "Step 2 — Heading", name: "styleStepTitle", widget: "string" }
-          - { label: "Step 2 — Hint", name: "styleStepHint", widget: "string", required: false }
-          - { label: "Step 2 — Compare Link Text", name: "styleCompareLabel", widget: "string" }
-          - { label: "Step 3 — Heading", name: "quantityStepTitle", widget: "string" }
-          - { label: "Step 3 — Hint", name: "quantityStepHint", widget: "string", required: false }
+          - { label: "Step 2 — Heading", name: "exaggerationStepTitle", widget: "string" }
+          - { label: "Step 2 — Hint", name: "exaggerationStepHint", widget: "string", required: false }
+          - { label: "Step 3 — Heading", name: "styleStepTitle", widget: "string" }
+          - { label: "Step 3 — Hint", name: "styleStepHint", widget: "string", required: false }
+          - { label: "Step 3 — Compare Link Text", name: "styleCompareLabel", widget: "string" }
+          - { label: "Step 4 — Heading", name: "quantityStepTitle", widget: "string" }
+          - { label: "Step 4 — Hint", name: "quantityStepHint", widget: "string", required: false }
           - { label: "Extras Step — Heading", name: "extrasStepTitle", widget: "string" }
           - { label: "Extras Step — Hint", name: "extrasStepHint", widget: "string", required: false }
           - { label: "Extras Step — Placeholder", name: "extrasPlaceholder", widget: "string", required: false }

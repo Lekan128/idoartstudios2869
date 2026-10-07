@@ -7,10 +7,12 @@
   "priceAnchor": "Styles from ₦35,000",
   "currency": "NGN",
   "onRequestLabel": "Price on request",
-  "fromLabel": "from",
 
   "subjectStepTitle": "What should we draw?",
   "subjectStepHint": "Every option can include more than one person — you'll choose that in a moment.",
+
+  "exaggerationStepTitle": "How much exaggeration?",
+  "exaggerationStepHint": "Same person, same outfit — the difference is how far we push the features.",
 
   "styleStepTitle": "Choose your style",
   "styleStepHint": "The same face, drawn three ways. This is the choice that changes the look the most.",
@@ -59,6 +61,25 @@
       "image": "/images/uploads/styles/subject-full-body-extras.png",
       "alt": "Caricature of a bearded man in glasses leaning on his sports car",
       "needsExtras": true
+    }
+  ],
+
+  "exaggerations": [
+    {
+      "id": "exaggerated",
+      "name": "Exaggerated",
+      "tagline": "Big features, big laughs",
+      "description": "The classic caricature. We play up the features that make you, you — bigger head, bigger smile, bolder expression — for a funny piece that gets a laugh every time someone sees it.",
+      "image": "/images/uploads/styles/exaggeration-exaggerated.png",
+      "alt": "Exaggerated caricature of a man in glasses with an oversized head and wide grin"
+    },
+    {
+      "id": "no-exaggeration",
+      "name": "No Exaggeration",
+      "tagline": "True to life proportions",
+      "description": "Drawn in our caricature line, but with your real proportions and nothing pushed for laughs. A flattering choice for a gift, a profile picture or the office wall.",
+      "image": "/images/uploads/styles/exaggeration-natural.png",
+      "alt": "The same man drawn with natural, true-to-life proportions"
     }
   ],
 

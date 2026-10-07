@@ -62,6 +62,9 @@ export default function SummaryBar({
               <div className="flex items-start justify-between gap-4">
                 <dt className="text-neutral-700">
                   {headline}
+                  {quote.exaggeration && (
+                    <span className="block text-xs text-neutral-500">{quote.exaggeration.name}</span>
+                  )}
                   {quote.quantity > 1 && quote.artworkMode && (
                     <span className="block text-xs text-neutral-500">{quote.artworkMode.label}</span>
                   )}
