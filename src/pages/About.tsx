@@ -21,7 +21,7 @@ export default function About() {
       <div>
         <p className="text-xs font-bold tracking-widest text-pink-600">{site.brandName.toUpperCase()}</p>
         <h1 className="mt-2 text-3xl font-extrabold text-neutral-900 sm:text-4xl lg:text-5xl">{about.heading}</h1>
-        <p className="mt-3 text-lg font-semibold text-pink-600">{about.intro}</p>
+        <p className="mt-2 max-w-2xl text-sm font-semibold text-pink-600 sm:text-base">{about.intro}</p>
 
         <div className="mt-6 max-w-2xl space-y-4 text-neutral-700">
           {about.bodyParagraphs.map((p, i) => (

@@ -41,7 +41,7 @@ export default function SpotOnCaricature() {
         <header className="max-w-3xl">
           <p className="text-xs font-bold tracking-widest text-pink-600">{site.brandName.toUpperCase()}</p>
           <h1 className="mt-2 text-3xl font-extrabold text-neutral-900 sm:text-4xl lg:text-5xl">{page.heading}</h1>
-          <p className="mt-3 text-lg font-semibold text-pink-600">{page.intro}</p>
+          <p className="mt-2 max-w-2xl text-sm font-semibold text-pink-600 sm:text-base">{page.intro}</p>
         </header>
       </div>
 
@@ -49,7 +49,7 @@ export default function SpotOnCaricature() {
         <h2 id="plans-title" className="text-2xl font-extrabold text-neutral-900 sm:text-3xl">
           {booking.plansTitle}
         </h2>
-        {booking.plansHint && <p className="mt-1 text-neutral-600">{booking.plansHint}</p>}
+        {booking.plansHint && <p className="mt-1 text-sm text-neutral-600">{booking.plansHint}</p>}
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {booking.plans.map((p, i) => (

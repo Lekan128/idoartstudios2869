@@ -5,7 +5,7 @@ import siteData from "../../data/site.json";
 import type { SiteData } from "../../types";
 import SectionHeading from "./SectionHeading";
 import BookEventLink from "../layout/BookEventLink";
-import { REACTION_VIDEO_PLAY_EVENT } from "./VideoPopup";
+import { REACTION_VIDEO_PLAY_EVENT } from "../layout/VideoPopup";
 
 const video = reactionVideoData as ReactionVideoData;
 const site = siteData as SiteData;
@@ -23,7 +23,7 @@ export default function ReactionVideo() {
         <div>
           <SectionHeading eyebrow={video.eyebrow} title={video.title} align="responsive" />
           {video.caption && (
-            <p className="mx-auto mt-4 max-w-sm text-center text-base text-neutral-600 md:mx-0 md:mt-5 md:text-left md:text-lg">
+            <p className="mx-auto mt-3 max-w-sm text-center text-sm text-neutral-600 md:mx-0 md:mt-4 md:text-left md:text-base">
               {video.caption}
             </p>
           )}

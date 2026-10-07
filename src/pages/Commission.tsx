@@ -193,7 +193,7 @@ export default function Commission() {
         <header className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold tracking-widest text-pink-600">{data.eyebrow}</p>
           <h1 className="mt-2 text-3xl font-extrabold text-neutral-900 sm:text-4xl">{data.heading}</h1>
-          {data.intro && <p className="mt-3 text-neutral-600">{data.intro}</p>}
+          {data.intro && <p className="mt-2 text-sm text-neutral-600 sm:text-base">{data.intro}</p>}
         </header>
 
         {/* The order itself is one centred column, like a checkout: a single left
