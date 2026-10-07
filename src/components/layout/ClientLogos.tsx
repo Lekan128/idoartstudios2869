@@ -37,7 +37,7 @@ export default function ClientLogos() {
   if (items.length === 0) return null;
 
   return (
-    <section aria-label={clients.title} className="bg-white pb-2 pt-10">
+    <section aria-label={clients.title} className="bg-white pb-1 pt-7">
       <h2 className="text-center text-xs font-bold tracking-widest text-neutral-500 uppercase">
         {clients.title}
       </h2>
@@ -45,7 +45,7 @@ export default function ClientLogos() {
       {/* The track is duplicated so the -50% translate loops seamlessly; the copy
           is hidden from assistive tech and the marquee stops for reduced-motion
           users, who get a normal horizontal scroll instead. */}
-      <div className="marquee mt-6">
+      <div className="marquee mt-4">
         <div className="marquee-track">
           {[0, 1].map((copy) => (
             <div

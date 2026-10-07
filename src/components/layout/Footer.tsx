@@ -13,16 +13,23 @@ export default function Footer() {
     <footer id="contact" className="border-t border-pink-100 bg-white">
       <ClientLogos />
 
-      <div className="mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-6 sm:pb-10">
-        <div className="grid items-center gap-5 border-t border-pink-100 pt-8 text-center text-sm text-neutral-600 md:grid-cols-3 md:text-left">
-          <img src={site.logo} alt={site.brandName} className="mx-auto h-16 w-auto md:mx-0" />
+      {/* One compact row from md up — tagline and copyright, then the direct lines —
+          kept to the left so the bottom-right corner stays free for the floating
+          WhatsApp and video buttons. On phones those buttons span the full width
+          of the corner, so the extra bottom padding keeps them off the last line. */}
+      <div className="mx-auto max-w-6xl px-4 pb-40 pt-5 sm:px-6 md:pb-6">
+        <div className="flex flex-col items-center gap-4 border-t border-pink-100 pt-5 text-center text-sm text-neutral-600 md:flex-row md:items-center md:gap-12 md:text-left">
+          <div>
+            <p className="font-display text-base font-medium text-neutral-800">{site.footerTagline}</p>
+            <p className="mt-1 text-xs text-neutral-400">
+              © {year} {site.brandName}. All rights reserved.
+            </p>
+          </div>
 
-          <p className="font-display text-lg font-medium text-neutral-800 md:text-center">{site.footerTagline}</p>
-
-          <ul className="flex flex-col items-center gap-2 md:items-end">
+          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-start">
             {site.whatsappNumber && (
               <li>
-                <a href={telLink(site)} className="inline-flex items-center gap-2 hover:text-pink-600">
+                <a href={telLink(site)} className="inline-flex items-center gap-1.5 hover:text-pink-600">
                   <PhoneIcon size={15} className="text-pink-600" />
                   {formatPhone(site.whatsappNumber)}
                 </a>
@@ -30,7 +37,7 @@ export default function Footer() {
             )}
             {site.contactEmail && (
               <li>
-                <a href={`mailto:${site.contactEmail}`} className="inline-flex items-center gap-2 hover:text-pink-600">
+                <a href={`mailto:${site.contactEmail}`} className="inline-flex items-center gap-1.5 hover:text-pink-600">
                   <MailIcon size={15} className="text-pink-600" />
                   {site.contactEmail}
                 </a>
@@ -42,7 +49,7 @@ export default function Footer() {
                   href={site.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 hover:text-pink-600"
+                  className="inline-flex items-center gap-1.5 hover:text-pink-600"
                 >
                   <InstagramIcon size={15} className="text-pink-600" />
                   {instagramHandle(site.instagramUrl)}
@@ -51,10 +58,6 @@ export default function Footer() {
             )}
           </ul>
         </div>
-
-        <p className="mt-8 text-center text-xs text-neutral-400">
-          © {year} {site.brandName}. All rights reserved.
-        </p>
       </div>
     </footer>
   );
