@@ -240,17 +240,22 @@ export default function VideoPopup() {
           </div>
         </div>
       ) : (
+        // A round play button on phones, so it never sits over a page's own buttons;
+        // the "Watch reactions" label joins it from sm up, where there's room.
         <button
           type="button"
           onClick={reopen}
-          className="video-popup-enter inline-flex items-center gap-2 rounded-full bg-neutral-900/85 py-1.5 pl-1.5 pr-3.5 text-xs font-semibold text-white shadow-xl ring-1 ring-white/10 backdrop-blur-sm transition-colors hover:bg-neutral-900"
+          aria-label="Watch reactions"
+          className="video-popup-enter inline-flex items-center gap-2 rounded-full bg-neutral-900/85 p-1.5 text-xs font-semibold text-white shadow-xl ring-1 ring-white/10 backdrop-blur-sm transition-colors hover:bg-neutral-900 sm:pr-3.5"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-pink-600">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-pink-600 sm:h-7 sm:w-7">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>
-          Watch reactions
+          <span className="hidden sm:inline" aria-hidden="true">
+            Watch reactions
+          </span>
         </button>
       )}
     </aside>

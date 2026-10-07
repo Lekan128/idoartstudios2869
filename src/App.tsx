@@ -6,6 +6,7 @@ import SpotOnCaricature from "./pages/SpotOnCaricature";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Commission from "./pages/Commission";
+import Contact from "./pages/Contact";
 
 export default function App() {
   return (
@@ -23,6 +24,8 @@ export default function App() {
             static /styles/index.html head and in-app links agree. */}
         <Route path="/styles" element={<Commission />} />
         <Route path="/styles/" element={<Commission />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact/" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>

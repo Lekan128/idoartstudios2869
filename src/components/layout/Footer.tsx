@@ -1,6 +1,8 @@
 import siteData from "../../data/site.json";
 import type { SiteData } from "../../types";
 import ClientLogos from "./ClientLogos";
+import { InstagramIcon, MailIcon, PhoneIcon } from "./ContactIcons";
+import { formatPhone, instagramHandle, telLink } from "../../lib/contact";
 
 const site = siteData as SiteData;
 
@@ -17,23 +19,37 @@ export default function Footer() {
 
           <p className="font-display text-lg font-medium text-neutral-800 md:text-center">{site.footerTagline}</p>
 
-          <div className="flex flex-col items-center gap-1 md:items-end">
-            {site.contactEmail && (
-              <a href={`mailto:${site.contactEmail}`} className="hover:text-pink-600">
-                {site.contactEmail}
-              </a>
-            )}
+          <ul className="flex flex-col items-center gap-2 md:items-end">
             {site.whatsappNumber && (
-              <a
-                href={`https://wa.me/${site.whatsappNumber.replace(/[^\d]/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-pink-600"
-              >
-                WhatsApp: {site.whatsappNumber}
-              </a>
+              <li>
+                <a href={telLink(site)} className="inline-flex items-center gap-2 hover:text-pink-600">
+                  <PhoneIcon size={15} className="text-pink-600" />
+                  {formatPhone(site.whatsappNumber)}
+                </a>
+              </li>
             )}
-          </div>
+            {site.contactEmail && (
+              <li>
+                <a href={`mailto:${site.contactEmail}`} className="inline-flex items-center gap-2 hover:text-pink-600">
+                  <MailIcon size={15} className="text-pink-600" />
+                  {site.contactEmail}
+                </a>
+              </li>
+            )}
+            {site.instagramUrl && (
+              <li>
+                <a
+                  href={site.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-pink-600"
+                >
+                  <InstagramIcon size={15} className="text-pink-600" />
+                  {instagramHandle(site.instagramUrl)}
+                </a>
+              </li>
+            )}
+          </ul>
         </div>
 
         <p className="mt-8 text-center text-xs text-neutral-400">

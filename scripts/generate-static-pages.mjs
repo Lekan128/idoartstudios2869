@@ -28,6 +28,7 @@ function readJson(rel) {
 const about = readJson("src/data/about.json");
 const spotOn = readJson("src/data/spot-on-caricature.json");
 const commission = readJson("src/data/commission.json");
+const contact = readJson("src/data/contact.json");
 
 /**
  * Structured data for the prices page. This is emitted into the *static* head rather
@@ -83,6 +84,8 @@ const ROUTES = [
   // Not a legacy URL — a new page, but it carries the prices, so it gets its own
   // crawlable head and a sitemap entry like the rest.
   { slug: "styles", title: commission.seoTitle, description: commission.seoDescription, jsonLd: commissionJsonLd() },
+  // New page: Contact & Book, where the navbar's "Contact / Book" leads.
+  { slug: "contact", title: contact.seoTitle, description: contact.seoDescription },
 ];
 
 const template = readFileSync(path.join(DIST, "index.html"), "utf8");

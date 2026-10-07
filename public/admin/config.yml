@@ -67,12 +67,14 @@ collections:
               name: "contactEmail",
               widget: "string",
               required: false,
+              hint: "Shown on the Contact & Book page and in the footer. Leave blank to hide it.",
             }
           - {
               label: "Instagram URL",
               name: "instagramUrl",
               widget: "string",
               required: false,
+              hint: "Full profile link, e.g. https://www.instagram.com/idoartstudios/ — the @handle shown on the site is taken from it.",
             }
           - {
               label: "Facebook URL",
@@ -542,6 +544,35 @@ collections:
           - { label: "Order Note — Label", name: "noteLabel", widget: "string" }
           - { label: "Order Note — Placeholder", name: "notePlaceholder", widget: "string", required: false }
           - { label: "Start Over Link Text", name: "startOverLabel", widget: "string" }
+
+  - name: "contact"
+    label: "Contact & Book Page"
+    files:
+      - label: "Contact & Book"
+        name: "contact"
+        file: "src/data/contact.json"
+        fields:
+          - { label: "SEO Title (browser tab / Google title)", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description (Google search snippet)", name: "seoDescription", widget: "text" }
+          - { label: "Eyebrow (small text above the heading)", name: "eyebrow", widget: "string" }
+          - { label: "Page Heading", name: "heading", widget: "string" }
+          - { label: "Intro Line", name: "intro", widget: "string", required: false }
+          - label: "Book an Event Card"
+            name: "eventCard"
+            widget: "object"
+            hint: "The button uses the Book an Event text and link from Site Settings."
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "body", widget: "text" }
+          - label: "Commission Card"
+            name: "commissionCard"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "body", widget: "text" }
+              - { label: "Button Text", name: "buttonLabel", widget: "string", required: false }
+          - { label: "Contact Details — Heading", name: "directTitle", widget: "string", hint: "The phone, email and Instagram shown below it come from Site Settings." }
+          - { label: "Location Line", name: "location", widget: "string", required: false }
 
   - name: "event-booking"
     label: "Event Plans & Booking Form"

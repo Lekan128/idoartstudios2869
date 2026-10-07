@@ -25,14 +25,14 @@
     },
     {
       "label": "Contact / Book",
-      "href": "/spot-on-caricature/#book"
+      "href": "/contact/"
     }
   ],
   "bookEventUrl": "/spot-on-caricature/#plans",
   "bookEventLabel": "Book an Event",
   "whatsappNumber": "+2348091826948",
   "contactEmail": "",
-  "instagramUrl": "",
+  "instagramUrl": "https://www.instagram.com/idoartstudios/",
   "facebookUrl": "",
   "footerTagline": "Your Memories, Our Caricature"
 }

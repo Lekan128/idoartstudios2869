@@ -280,3 +280,27 @@ export interface EventBookingData {
 
   whatsappIntro: string;
 }
+
+/* ---------------------------------------------------------------------------
+   Contact & booking page (/contact): the two ways to work with us, then the
+   direct contact details from the site settings.
+--------------------------------------------------------------------------- */
+
+export interface ContactCard {
+  title: string;
+  body: string;
+  /** Button text. The event card uses the site's Book an Event label. */
+  buttonLabel?: string;
+}
+
+export interface ContactData {
+  seoTitle: string;
+  seoDescription: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  eventCard: ContactCard;
+  commissionCard: ContactCard;
+  directTitle: string;
+  location: string;
+}
