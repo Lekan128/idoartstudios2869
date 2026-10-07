@@ -45,13 +45,14 @@ export default function QuantityStep({ data, quantity, artworkModeId, onQuantity
       {quantity > 1 && (
         <fieldset className="mt-6">
           <legend className="text-sm font-bold text-neutral-900">How should we draw them?</legend>
-          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          {/* Side by side at every width: it's a straight either/or, best compared at a glance. */}
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:gap-3">
             {data.artworkModes.map((mode) => {
               const selected = mode.id === artworkModeId;
               return (
                 <label
                   key={mode.id}
-                  className={`flex cursor-pointer items-start gap-3 rounded-xl bg-white p-4 ring-1 transition-colors ${
+                  className={`flex cursor-pointer items-start gap-2 rounded-xl bg-white p-3 ring-1 transition-colors sm:gap-3 sm:p-4 ${
                     selected ? "ring-2 ring-pink-500" : "ring-pink-100 hover:bg-pink-50"
                   }`}
                 >
@@ -61,11 +62,11 @@ export default function QuantityStep({ data, quantity, artworkModeId, onQuantity
                     value={mode.id}
                     checked={selected}
                     onChange={() => onModeChange(mode.id)}
-                    className="mt-1 h-4 w-4 shrink-0 accent-pink-600"
+                    className="mt-0.5 h-4 w-4 shrink-0 accent-pink-600"
                   />
                   <span>
-                    <span className="block text-sm font-bold text-neutral-900">{mode.label}</span>
-                    <span className="block text-xs text-neutral-600">{mode.hint}</span>
+                    <span className="block text-sm font-bold leading-tight text-neutral-900">{mode.label}</span>
+                    <span className="mt-0.5 block text-xs leading-snug text-neutral-600">{mode.hint}</span>
                   </span>
                 </label>
               );

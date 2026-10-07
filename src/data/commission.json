@@ -3,19 +3,21 @@
   "seoDescription": "Commission a hand-drawn caricature from I Do Art Studios. Three styles from ₦35,000 — Expressive, Classic and Realistic. See the price instantly and order on WhatsApp.",
   "eyebrow": "PRICES & ORDER",
   "heading": "Commission a caricature",
-  "intro": "Pick what you want drawn, choose your style, and see your price straight away — no need to message us first just to ask what it costs.",
+  "intro": "Your order is already filled in with our most popular choices. Change anything you like, and the price updates as you go.",
   "priceAnchor": "Styles from ₦35,000",
   "currency": "NGN",
   "onRequestLabel": "Price on request",
+  "defaultStyle": "classic",
+  "defaultExaggeration": "exaggerated",
 
   "subjectStepTitle": "What should we draw?",
-  "subjectStepHint": "Every option can include more than one person — you'll choose that in a moment.",
+  "subjectStepHint": "Every option can include more than one person — choose how many below.",
 
   "exaggerationStepTitle": "How much exaggeration?",
   "exaggerationStepHint": "Same person, same outfit — the difference is how far we push the features.",
 
   "styleStepTitle": "Choose your style",
-  "styleStepHint": "The same face, drawn three ways. This is the choice that changes the look the most.",
+  "styleStepHint": "The same face, drawn three ways. This changes the look the most.",
   "styleCompareLabel": "See the difference side by side",
 
   "quantityStepTitle": "How many people?",
@@ -28,11 +30,11 @@
 
 
   "summaryTitle": "Your order",
-  "orderCtaLabel": "Send my order",
-  "orderCtaHint": "Opens WhatsApp with your order already written out. Nothing is paid yet.",
+  "orderCtaLabel": "Order on WhatsApp",
+  "orderCtaHint": "Next: send one clear photo in the chat. Nothing is paid yet.",
   "noteLabel": "Anything else we should know? (optional)",
   "notePlaceholder": "e.g. it's a birthday gift, I need it before Saturday…",
-  "startOverLabel": "Start over",
+  "startOverLabel": "Reset choices",
 
   "subjects": [
     {
@@ -123,7 +125,7 @@
     {
       "id": "realistic",
       "name": "Realistic",
-      "badge": "Premium",
+      "badge": "",
       "tagline": "Fully painted, gallery finish",
       "description": "A fully painted caricature with a realistic finish. The original line work is no longer on show — this is a polished painted artwork that still keeps the exaggeration and character of the subject.",
       "bestFor": "Best for a sophisticated, detailed painted piece you'd hang on a wall.",
@@ -163,13 +165,13 @@
   "artworkModes": [
     {
       "id": "together",
-      "label": "One artwork, everyone together",
-      "hint": "A single piece with all of them in it."
+      "label": "All in one artwork",
+      "hint": "Everyone drawn together in a single piece."
     },
     {
       "id": "separate",
-      "label": "A separate artwork for each person",
-      "hint": "Individual pieces, one per person."
+      "label": "One artwork each",
+      "hint": "A separate piece for every person."
     }
   ],
 
@@ -177,7 +179,7 @@
   "howItWorks": [
     {
       "title": "1. Build your order here",
-      "body": "Choose what you want drawn, the style and how many people. Your price updates as you go — no guessing, no waiting for a reply."
+      "body": "Your order starts filled in with our most popular choices. Change what you want drawn, the style or how many people, and the price updates as you go."
     },
     {
       "title": "2. Send it to us on WhatsApp",

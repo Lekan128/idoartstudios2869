@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import siteData from "../../data/site.json";
 import type { SiteData } from "../../types";
+import BookEventLink from "./BookEventLink";
 
 const site = siteData as SiteData;
 
@@ -76,14 +77,12 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <a
-            href={site.bookEventUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <BookEventLink
+            placement="navbar"
             className="hidden rounded-full bg-pink-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-pink-700 lg:inline-flex"
           >
             {site.bookEventLabel}
-          </a>
+          </BookEventLink>
 
           <button
             ref={toggleRef}
@@ -153,15 +152,13 @@ export default function Navbar() {
           </nav>
 
           <div className="border-t border-pink-100 p-4">
-            <a
-              href={site.bookEventUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <BookEventLink
+              placement="menu_panel"
               onClick={close}
               className="block rounded-full bg-pink-600 px-5 py-3 text-center text-base font-semibold text-white transition-colors hover:bg-pink-700"
             >
               {site.bookEventLabel}
-            </a>
+            </BookEventLink>
           </div>
         </aside>
       </div>

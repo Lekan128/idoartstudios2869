@@ -54,7 +54,7 @@ collections:
               label: "Book an Event — Link",
               name: "bookEventUrl",
               widget: "string",
-              hint: "Currently the Google Form. Update this when the owner's new booking flow is ready.",
+              hint: "Where every Book an Event button goes. /book-event/ is the on-site inquiry form (edit it under 'Book an Event Page'). A full URL (e.g. a Google Form) opens in a new tab instead.",
             }
           - {
               label: "WhatsApp Number (with country code, e.g. +234...)",
@@ -130,6 +130,13 @@ collections:
               widget: "image",
               required: false,
               hint: "Photo shown behind the hero section. It is automatically darkened so the text stays readable. Leave empty for the plain pink background.",
+            }
+          - {
+              label: "Hero — Second Button Text",
+              name: "orderOnlineLabel",
+              widget: "string",
+              required: false,
+              hint: 'The outlined button next to Book an Event, linking to the online order page. e.g. "Order a caricature online".',
             }
           - {
               label: "Gallery Section — Eyebrow",
@@ -292,6 +299,24 @@ collections:
               widget: "string",
               required: false,
               hint: 'Shown as a badge near the top, e.g. "Styles from ₦35,000". Leave blank to show the lowest price automatically.',
+            }
+          - {
+              label: "Pre-selected Style",
+              name: "defaultStyle",
+              widget: "select",
+              required: false,
+              options:
+                - { label: "Expressive", value: "expressive" }
+                - { label: "Classic", value: "classic" }
+                - { label: "Realistic", value: "realistic" }
+              hint: "Customers arrive with this style already chosen, so they see a price straight away and can order in one tap. Leave blank to use the style with a badge.",
+            }
+          - {
+              label: "Pre-selected Exaggeration",
+              name: "defaultExaggeration",
+              widget: "string",
+              required: false,
+              hint: 'ID of the exaggeration chosen on arrival, e.g. "exaggerated". Leave blank to use the first one listed.',
             }
           - {
               label: "Currency Code",
@@ -515,6 +540,63 @@ collections:
           - { label: "Order Note — Label", name: "noteLabel", widget: "string" }
           - { label: "Order Note — Placeholder", name: "notePlaceholder", widget: "string", required: false }
           - { label: "Start Over Link Text", name: "startOverLabel", widget: "string" }
+
+  - name: "book-event"
+    label: "Book an Event Page"
+    files:
+      - label: "Event Inquiry Form"
+        name: "book-event"
+        file: "src/data/book-event.json"
+        fields:
+          - { label: "SEO Title (browser tab / Google title)", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description (Google search snippet)", name: "seoDescription", widget: "text" }
+          - { label: "Eyebrow (small text above the heading)", name: "eyebrow", widget: "string" }
+          - { label: "Page Heading", name: "heading", widget: "string" }
+          - { label: "Intro Line", name: "intro", widget: "text" }
+          - { label: "Part 1 — Heading", name: "eventStepTitle", widget: "string" }
+          - label: "Part 1 — Kinds of Event"
+            name: "eventTypes"
+            widget: "list"
+            field: { label: "Kind of event", name: "eventType", widget: "string" }
+          - label: "Part 1 — Guest Number Options"
+            name: "guestRanges"
+            widget: "list"
+            field: { label: "Range", name: "range", widget: "string" }
+          - { label: "Part 1 — Button Text", name: "checkAvailabilityLabel", widget: "string" }
+          - { label: "Part 2 — Heading", name: "contactStepTitle", widget: "string" }
+          - { label: "Part 2 — Small Print", name: "contactStepHint", widget: "string", required: false }
+          - { label: "Part 2 — Button Text", name: "sendLabel", widget: "string" }
+          - { label: "Part 2 — Text Under the Button", name: "sendHint", widget: "string", required: false }
+          - {
+              label: "After Sending — Heading",
+              name: "sentTitle",
+              widget: "string",
+              hint: "{name} is replaced with the customer's first name.",
+            }
+          - { label: "After Sending — Message", name: "sentBody", widget: "text" }
+          - { label: "Why Book Us — Title", name: "factsTitle", widget: "string" }
+          - label: "Why Book Us — Points"
+            name: "facts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            hint: "What an event planner wants to know before booking. Real numbers help most — e.g. how many guests you draw per hour, how much space you need."
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+          - { label: "What Happens Next — Title", name: "nextStepsTitle", widget: "string" }
+          - label: "What Happens Next — Steps"
+            name: "nextSteps"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+          - {
+              label: "WhatsApp Message — Opening Line",
+              name: "whatsappIntro",
+              widget: "text",
+              hint: "The event details the customer entered are added underneath automatically.",
+            }
 
   - name: "clients"
     label: "Companies We've Worked With"

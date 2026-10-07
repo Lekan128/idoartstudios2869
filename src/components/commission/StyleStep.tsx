@@ -5,16 +5,20 @@ interface Props {
   data: CommissionData;
   subjectId: string | null;
   selectedId: string | null;
+  comparing: boolean;
   onSelect: (id: string) => void;
-  onCompare: () => void;
+  onToggleCompare: () => void;
 }
 
-export default function StyleStep({ data, subjectId, selectedId, onSelect, onCompare }: Props) {
+export default function StyleStep({ data, subjectId, selectedId, comparing, onSelect, onToggleCompare }: Props) {
   return (
     <div>
       {/* A visitor cannot judge three styles they have to scroll between one at a
-          time, so all three always fit together: compact rows on phones (tap the
-          photo to enlarge), side-by-side cards from sm up. */}
+          time, so all three always fit together: compact rows on phones,
+          side-by-side cards from sm up. The whole card is the choice — the only
+          filled button on this page is the order button. Each card says just
+          enough to choose: name, one line, price. The full descriptions live in
+          the side-by-side comparison for anyone who wants them. */}
       <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
         {data.styles.map((style) => {
           const selected = style.id === selectedId;
@@ -22,86 +26,55 @@ export default function StyleStep({ data, subjectId, selectedId, onSelect, onCom
           const cover = style.images?.[0];
 
           return (
-            <div
+            <button
               key={style.id}
-              className={`relative flex overflow-hidden rounded-2xl bg-white shadow-sm ring-1 transition-all sm:flex-col ${
+              type="button"
+              onClick={() => onSelect(style.id)}
+              aria-pressed={selected}
+              className={`relative flex overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 transition-shadow hover:shadow-md sm:flex-col ${
                 selected ? "ring-2 ring-pink-500" : "ring-pink-100"
               }`}
             >
-              {style.badge && (
-                <span className="absolute left-0 top-4 z-10 hidden rounded-r-full bg-pink-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow sm:block">
-                  {style.badge}
-                </span>
-              )}
-
-              <button
-                type="button"
-                onClick={onCompare}
-                className="group relative w-28 shrink-0 self-stretch overflow-hidden bg-pink-50 sm:aspect-[4/3] sm:w-full"
-                aria-label={`${data.styleCompareLabel} — ${style.name}`}
-              >
+              <span className="relative block w-28 shrink-0 self-stretch overflow-hidden bg-pink-50 sm:aspect-[4/3] sm:w-full">
                 {cover && (
                   <img
                     src={cover.image}
                     alt={cover.alt || style.name}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover"
                     loading="lazy"
                   />
                 )}
-                {selected && (
-                  <span className="absolute left-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-pink-600 text-sm font-bold text-white shadow sm:hidden">
-                    ✓
+              </span>
+
+              <span className="flex flex-1 flex-col p-4 sm:p-5">
+                <span className="flex items-start justify-between gap-2">
+                  <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span className="font-display text-lg font-bold text-neutral-900">{style.name}</span>
+                    {style.badge && (
+                      <span className="rounded-full bg-pink-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-pink-700">
+                        {style.badge}
+                      </span>
+                    )}
                   </span>
-                )}
-                <span className="absolute bottom-2 right-2 rounded-full bg-white/90 px-2 py-0.5 text-[11px] font-semibold text-neutral-700 shadow transition-opacity sm:px-2.5 sm:py-1 sm:opacity-0 sm:group-hover:opacity-100">
-                  <span className="hidden sm:inline">Enlarge </span>⤢
+                  <span
+                    aria-hidden="true"
+                    className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                      selected ? "bg-pink-600 text-white" : "ring-2 ring-inset ring-pink-200"
+                    }`}
+                  >
+                    {selected && "✓"}
+                  </span>
                 </span>
-              </button>
+                <span className="text-xs font-semibold uppercase tracking-wide text-pink-600 sm:min-h-[2lh]">
+                  {style.tagline}
+                </span>
 
-              <div className="relative flex flex-1 flex-col p-4 sm:p-5">
-                {/* On phones the whole text area is the choose button. */}
-                <button
-                  type="button"
-                  onClick={() => onSelect(style.id)}
-                  aria-pressed={selected}
-                  aria-label={`Choose ${style.name}`}
-                  className="absolute inset-0 sm:hidden"
-                />
-
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <h3 className="text-lg font-bold text-neutral-900">{style.name}</h3>
-                  {style.badge && (
-                    <span className="rounded-full bg-pink-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-pink-700 sm:hidden">
-                      {style.badge}
-                    </span>
-                  )}
-                </div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-pink-600 sm:min-h-[2lh]">{style.tagline}</p>
-
-                <p className="mt-2 text-xl font-extrabold text-neutral-900 sm:mt-3 sm:text-2xl">
+                <span className="mt-2 block text-xl font-extrabold text-neutral-900 sm:mt-3 sm:text-2xl">
                   {price !== null ? formatPrice(price, data.currency) : data.onRequestLabel}
-                  {price !== null && (
-                    <span className="ml-1 text-xs font-normal text-neutral-500 sm:ml-0 sm:block">per person</span>
-                  )}
-                </p>
-
-                <p className="mt-3 hidden text-sm text-neutral-600 sm:block">{style.description}</p>
-                <p className="mt-2 hidden flex-1 text-sm font-semibold text-neutral-700 sm:block">{style.bestFor}</p>
-
-                <button
-                  type="button"
-                  onClick={() => onSelect(style.id)}
-                  aria-pressed={selected}
-                  className={`mt-5 hidden w-full rounded-full px-5 py-2.5 text-sm font-bold transition-colors sm:block ${
-                    selected
-                      ? "bg-neutral-900 text-white"
-                      : "bg-pink-600 text-white hover:bg-pink-700"
-                  }`}
-                >
-                  {selected ? "✓ Selected" : `Choose ${style.name}`}
-                </button>
-              </div>
-            </div>
+                  {price !== null && <span className="ml-1 text-xs font-normal text-neutral-500">per person</span>}
+                </span>
+              </span>
+            </button>
           );
         })}
       </div>
@@ -109,10 +82,12 @@ export default function StyleStep({ data, subjectId, selectedId, onSelect, onCom
       <div className="mt-4 text-center">
         <button
           type="button"
-          onClick={onCompare}
+          onClick={onToggleCompare}
+          aria-expanded={comparing}
+          aria-controls="style-compare"
           className="text-sm font-semibold text-pink-600 underline underline-offset-4 hover:text-pink-700"
         >
-          {data.styleCompareLabel} ⤢
+          {comparing ? "Hide the comparison" : data.styleCompareLabel}
         </button>
       </div>
     </div>

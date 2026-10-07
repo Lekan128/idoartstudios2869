@@ -47,6 +47,12 @@ export function priceFor(data: CommissionData, subjectId: string | null, styleId
   return row && row.price > 0 ? row.price : null;
 }
 
+/** Cheapest priced style for one option — the "from" price on the homepage cards. */
+export function lowestPriceFor(data: CommissionData, subjectId: string): number | null {
+  const prices = data.pricing.filter((p) => p.subject === subjectId && p.price > 0).map((p) => p.price);
+  return prices.length ? Math.min(...prices) : null;
+}
+
 /** Cheapest priced cell overall — used for the page's opening price anchor and SEO. */
 export function lowestPriceOverall(data: CommissionData): number | null {
   const prices = data.pricing.filter((p) => p.price > 0).map((p) => p.price);
@@ -113,11 +119,11 @@ export function quote(data: CommissionData, selection: Selection): Quote {
  * Short human-readable order reference (e.g. "IDA-4K7Q") so a WhatsApp chat can be
  * matched back to a specific order without the owner re-reading the whole thread.
  */
-export function orderReference(): string {
+export function orderReference(prefix = "IDA"): string {
   const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no I/O/0/1 — these get misread aloud
   let out = "";
   for (let i = 0; i < 4; i++) out += alphabet[Math.floor(Math.random() * alphabet.length)];
-  return `IDA-${out}`;
+  return `${prefix}-${out}`;
 }
 
 /** Builds the plain-text order that gets pre-filled into WhatsApp. */
@@ -153,6 +159,25 @@ export function buildOrderMessage(data: CommissionData, selection: Selection, q:
 
 export function whatsappLink(number: string, message: string): string {
   return `https://wa.me/${number.replace(/[^\d]/g, "")}?text=${encodeURIComponent(message)}`;
+}
+
+/**
+ * Fills every unanswered choice with its default, so the visitor arrives at a
+ * complete, priced order and only changes what they care about. The style
+ * defaults to the CMS pick (else the badged "Most popular" one), the option to
+ * the first listed.
+ */
+export function withDefaults(data: CommissionData, selection: Selection): Selection {
+  const style =
+    data.styles.find((s) => s.id === data.defaultStyle) ?? data.styles.find((s) => s.badge) ?? data.styles[0];
+  const exaggeration = data.exaggerations.find((e) => e.id === data.defaultExaggeration) ?? data.exaggerations[0];
+
+  return sanitizeSelection(data, {
+    ...selection,
+    subjectId: selection.subjectId ?? data.subjects[0]?.id ?? null,
+    exaggerationId: selection.exaggerationId ?? exaggeration?.id ?? null,
+    styleId: selection.styleId ?? style?.id ?? null,
+  });
 }
 
 /* --- Shareable / resumable selections ------------------------------------ */

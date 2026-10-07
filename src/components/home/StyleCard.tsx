@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { CommissionSubject } from "../../types";
+import { track } from "../../lib/analytics";
 
 interface Props {
   subject: CommissionSubject;
@@ -13,8 +14,8 @@ const ZOOM_MS = 1000;
 /**
  * Homepage card for one thing we draw. It reads straight from the commission data
  * and deep-links into the ordering page with the option already chosen, where
- * the visitor lands on the exaggeration step. A compact row on phones, so all
- * three fit on about one screen; a full card from md up.
+ * the visitor is walked on to the next step. Name, one line and the button —
+ * the drawing does the selling. A compact row on phones, so all three fit on about one screen; a full card from md up.
  */
 export default function StyleCard({ subject, zoomOrder }: Props) {
   return (
@@ -31,16 +32,19 @@ export default function StyleCard({ subject, zoomOrder }: Props) {
         />
       </div>
 
-      <div className="flex w-full flex-1 flex-col p-4 md:items-center md:p-6">
+      <div className="flex w-full flex-1 flex-col justify-center p-4 md:items-center md:p-6">
         <h3 className="text-lg font-bold text-neutral-900">{subject.name}</h3>
-        <p className="text-xs font-semibold uppercase tracking-wide text-pink-600">{subject.tagline}</p>
-        <p className="mt-2 flex-1 text-sm text-neutral-600">{subject.description}</p>
+        <p className="mt-0.5 text-xs font-semibold uppercase tracking-wide text-pink-600">{subject.tagline}</p>
 
         <Link
           to={`/styles/?type=${subject.id}`}
+          // Tells the ordering page this visitor chose from a card, so it walks them
+          // on to the next step. Arriving any other way leaves them at the top.
+          state={{ fromHomeCard: true }}
+          onClick={() => track("home_card_clicked", { subject: subject.id })}
           className="mt-3 block w-full rounded-full bg-pink-600 px-4 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-pink-700 md:mt-4 md:px-5 md:py-2.5"
         >
-          See styles &amp; prices →
+          Order {subject.name} →
         </Link>
       </div>
     </div>

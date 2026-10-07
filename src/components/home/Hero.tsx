@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import homeData from "../../data/home.json";
 import siteData from "../../data/site.json";
 import type { HomeData, SiteData } from "../../types";
+import BookEventLink from "../layout/BookEventLink";
+import { track } from "../../lib/analytics";
 
 const home = homeData as HomeData;
 const site = siteData as SiteData;
@@ -32,15 +34,26 @@ export default function Hero() {
           </h1>
           <p className={`mt-5 max-w-md text-lg font-medium sm:text-xl ${bg ? "text-neutral-200" : "text-neutral-700"}`}>{home.subheadline}</p>
 
-          <a
-            href={site.bookEventUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-pink-600 px-7 py-3 text-base font-semibold text-white shadow-md transition-colors hover:bg-pink-700"
-          >
-            {site.bookEventLabel}
-            <span aria-hidden="true">→</span>
-          </a>
+          {/* Two doors, one primary: events bring in the most, so they get the filled
+              button; ordering a drawing online is the outlined second choice. */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <BookEventLink
+              placement="hero"
+              className="inline-flex items-center gap-2 rounded-full bg-pink-600 px-7 py-3 text-base font-semibold text-white shadow-md transition-colors hover:bg-pink-700"
+            >
+              {site.bookEventLabel}
+              <span aria-hidden="true">→</span>
+            </BookEventLink>
+            <Link
+              to="/styles/"
+              onClick={() => track("home_order_online_clicked")}
+              className={`inline-flex items-center rounded-full px-6 py-3 text-base font-semibold ring-2 ring-inset transition-colors ${
+                bg ? "text-white ring-white/70 hover:bg-white/10" : "text-pink-700 ring-pink-300 hover:bg-pink-100"
+              }`}
+            >
+              {home.orderOnlineLabel || "Order a caricature online"}
+            </Link>
+          </div>
 
           <div>
             <Link

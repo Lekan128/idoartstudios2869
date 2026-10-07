@@ -25,6 +25,8 @@ export interface HomeData {
   heroImage: string;
   heroCaption: string;
   heroBackgroundImage?: string;
+  /** Text of the hero's second button, which goes to the online order page. */
+  orderOnlineLabel?: string;
   galleryEyebrow: string;
   galleryTitle: string;
   packagesEyebrow: string;
@@ -155,6 +157,10 @@ export interface CommissionData {
   priceAnchor: string;
   currency: string;
   onRequestLabel: string;
+  /** Pre-selected style id, so the visitor arrives at a priced order. Falls back to the badged style. */
+  defaultStyle?: string;
+  /** Pre-selected exaggeration id. Falls back to the first listed. */
+  defaultExaggeration?: string;
 
   subjectStepTitle: string;
   subjectStepHint: string;
@@ -197,4 +203,43 @@ export interface CommissionData {
 
   whatsappIntro: string;
   whatsappClosing: string;
+}
+
+/* ---------------------------------------------------------------------------
+   Event inquiry (the /book-event page). A two-part form: the event first
+   (low-commitment, answered in taps), then who to send the quote to. Every
+   inquiry is stored by Netlify Forms and handed over to WhatsApp.
+--------------------------------------------------------------------------- */
+
+export interface EventFact {
+  title: string;
+  body: string;
+}
+
+export interface BookEventData {
+  seoTitle: string;
+  seoDescription: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+
+  eventStepTitle: string;
+  eventTypes: string[];
+  guestRanges: string[];
+  checkAvailabilityLabel: string;
+
+  contactStepTitle: string;
+  contactStepHint: string;
+  sendLabel: string;
+  sendHint: string;
+
+  sentTitle: string;
+  sentBody: string;
+
+  factsTitle: string;
+  facts: EventFact[];
+  nextStepsTitle: string;
+  nextSteps: EventFact[];
+
+  whatsappIntro: string;
 }

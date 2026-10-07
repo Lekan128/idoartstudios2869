@@ -25,10 +25,10 @@
     },
     {
       "label": "Contact / Book",
-      "href": "/#contact"
+      "href": "/book-event/"
     }
   ],
-  "bookEventUrl": "https://forms.gle/ihrUegu9WFixtbVH8",
+  "bookEventUrl": "/book-event/",
   "bookEventLabel": "Book an Event",
   "whatsappNumber": "+2348091826948",
   "contactEmail": "",

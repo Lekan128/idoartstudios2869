@@ -3,6 +3,7 @@ import pageData from "../data/spot-on-caricature.json";
 import siteData from "../data/site.json";
 import ReactionVideo from "../components/home/ReactionVideo";
 import type { ServicePageData, SiteData } from "../types";
+import BookEventLink from "../components/layout/BookEventLink";
 
 const page = pageData as ServicePageData;
 const site = siteData as SiteData;
@@ -30,15 +31,13 @@ export default function SpotOnCaricature() {
           ))}
         </div>
 
-        <a
-          href={site.bookEventUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <BookEventLink
+          placement="spot_on"
           className="mt-10 inline-flex items-center gap-2 rounded-full bg-pink-600 px-7 py-3 text-base font-semibold text-white shadow-md transition-colors hover:bg-pink-700"
         >
           {site.bookEventLabel}
           <span aria-hidden="true">→</span>
-        </a>
+        </BookEventLink>
       </div>
 
       <ReactionVideo />

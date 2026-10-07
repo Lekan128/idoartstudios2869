@@ -4,6 +4,7 @@ import type { ReactionVideoData } from "../../types";
 import siteData from "../../data/site.json";
 import type { SiteData } from "../../types";
 import SectionHeading from "./SectionHeading";
+import BookEventLink from "../layout/BookEventLink";
 
 const video = reactionVideoData as ReactionVideoData;
 const site = siteData as SiteData;
@@ -25,15 +26,13 @@ export default function ReactionVideo() {
               {video.caption}
             </p>
           )}
-          <a
-            href={site.bookEventUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <BookEventLink
+            placement="reaction_video"
             className="mt-8 hidden items-center gap-2 rounded-full bg-pink-600 px-7 py-3 text-base font-semibold text-white shadow-md transition-colors hover:bg-pink-700 md:inline-flex"
           >
             {site.bookEventLabel}
             <span aria-hidden="true">→</span>
-          </a>
+          </BookEventLink>
         </div>
 
         <div className="relative mx-auto aspect-[9/16] w-full max-w-[17rem] overflow-hidden rounded-2xl bg-black shadow-lg md:w-72 md:max-w-none">

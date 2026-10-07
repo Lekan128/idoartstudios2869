@@ -66,6 +66,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Netlify Forms only registers forms it finds in the deployed HTML, and the
+         real event inquiry form is rendered by React. This hidden copy declares
+         the form and its fields so submissions from /book-event are accepted.
+         Keep the field names in sync with src/lib/event.ts. -->
+    <form name="event-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="event-inquiry" />
+      <input name="bot-field" />
+      <input name="reference" />
+      <input name="date" />
+      <input name="eventType" />
+      <input name="guests" />
+      <input name="location" />
+      <input name="name" />
+      <input name="phone" />
+      <textarea name="notes"></textarea>
+    </form>
     <script type="module" src="/src/main.tsx"></script>
     <script>
       if (window.netlifyIdentity) {

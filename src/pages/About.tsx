@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import aboutData from "../data/about.json";
 import siteData from "../data/site.json";
 import type { AboutData, SiteData } from "../types";
+import BookEventLink from "../components/layout/BookEventLink";
 
 const about = aboutData as AboutData;
 const site = siteData as SiteData;
@@ -36,15 +37,13 @@ export default function About() {
           ))}
         </ul>
 
-        <a
-          href={site.bookEventUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <BookEventLink
+          placement="about"
           className="mt-8 inline-flex items-center gap-2 rounded-full bg-pink-600 px-7 py-3 text-base font-semibold text-white shadow-md transition-colors hover:bg-pink-700"
         >
           {site.bookEventLabel}
           <span aria-hidden="true">→</span>
-        </a>
+        </BookEventLink>
       </div>
 
       {about.artistImage && (
